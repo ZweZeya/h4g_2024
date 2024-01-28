@@ -5,7 +5,7 @@ Install in the node modules
 npm install
 ```
 
-Set up the environment variables in the .env file
+Set up the environment variables in the ```.env``` file
 ```bash
 cp .example.env .env
 ```
