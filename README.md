@@ -1,16 +1,16 @@
 # Getting Started
 
-Install in the node modules
+Install node modules
 ```bash
 npm install
 ```
 
-Set up the environment variables in the ```.env``` file
+Set up environment variables in the ```.env``` file
 ```bash
 cp .example.env .env
 ```
 
-Run the development server
+Run development server
 ```bash
 npm run dev
 ```
