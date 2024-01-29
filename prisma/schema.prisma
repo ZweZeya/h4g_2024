@@ -10,32 +10,64 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  // fields
+  id                 Int                 @id @default(autoincrement())
+  email              String              @unique @db.VarChar(100)
+  hashPassword       String              @db.VarChar(100)
+  // relation - mandatory cos prisma
+  volunteer          Volunteer?
+  organisation       Organisation?
+  admin              Admin?
+  inboxNotifications InboxNotification[]
+
+  @@unique(fields: [email, hashPassword], name: "account_details")
+  @@map("user")
+}
+
+model Admin {
+  id     Int    @id @default(autoincrement())
+  user   User   @relation(fields: [userId], references: [id])
+  userId Int    @unique
+  name   String @db.VarChar(100)
+
+  @@map("admin")
+}
+
 model Volunteer {
   // fields
-  id           Int          @id @default(autoincrement())
-  name         String       @db.VarChar(100)
-  email        String       @unique @db.VarChar(100)
-  password     String       @db.VarChar(100)
+  id           Int           @id @default(autoincrement())
+  user         User          @relation(fields: [userId], references: [id])
+  userId       Int           @unique
+  name         String        @db.VarChar(100)
   mobileNumber Int
-  // relations - mandatory
+  bday         DateTime
+  address      String?       @db.VarChar(255)
+  availability Availability
+  // relations - mandatory cos prisma
   enrollments  Enrollment[]
+  certificates Certificate[]
 
-  @@unique(fields: [email, password], name: "account_details")
-  @@map("tb_volunteer")
+  @@map("volunteer")
+}
+
+enum Availability {
+  WEEKDAYS
+  WEEKEND
+  ANY
 }
 
 model Organisation {
   // fields
   id           Int     @id @default(autoincrement())
+  user         User    @relation(fields: [userId], references: [id])
+  userId       Int     @unique
   name         String  @db.VarChar(100)
-  email        String  @unique @db.VarChar(100)
-  password     String  @db.VarChar(100)
   mobileNumber Int
-  // relations - mandatory
+  // relations - mandatory cos prisma
   events       Event[]
 
-  @@unique(fields: [email, password], name: "account_details")
-  @@map("tb_organisation")
+  @@map("organisation")
 }
 
 model Event {
@@ -46,10 +78,10 @@ model Event {
   name           String       @db.VarChar(100)
   location       String?
   maxVolunteers  Int
-  // relations - mandatory
+  // relations - mandatory cos prisma
   enrollments    Enrollment[]
 
-  @@map("tb_event")
+  @@map("event")
 }
 
 model Enrollment {
@@ -60,11 +92,27 @@ model Enrollment {
   eventId     Int
   status      EnrollmentStatus @default(PENDING)
 
-  @@map("tb_enrollment")
+  @@map("enrollment")
 }
 
 enum EnrollmentStatus {
   PENDING
+  REJECTED
   ASSIGNED
   COMPLETED
+}
+
+model Certificate {
+  // fields
+  id          Int       @id @default(autoincrement())
+  volunteer   Volunteer @relation(fields: [volunteerId], references: [id])
+  volunteerId Int
+}
+
+model InboxNotification {
+  // fields
+  id      Int    @id @default(autoincrement())
+  user    User   @relation(fields: [userId], references: [id])
+  userId  Int
+  message String @db.VarChar(255)
 }
