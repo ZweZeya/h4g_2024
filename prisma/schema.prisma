@@ -9,3 +9,62 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Volunteer {
+  // fields
+  id           Int          @id @default(autoincrement())
+  name         String       @db.VarChar(100)
+  email        String       @unique @db.VarChar(100)
+  password     String       @db.VarChar(100)
+  mobileNumber Int
+  // relations - mandatory
+  enrollments  Enrollment[]
+
+  @@unique(fields: [email, password], name: "account_details")
+  @@map("tb_volunteer")
+}
+
+model Organisation {
+  // fields
+  id           Int     @id @default(autoincrement())
+  name         String  @db.VarChar(100)
+  email        String  @unique @db.VarChar(100)
+  password     String  @db.VarChar(100)
+  mobileNumber Int
+  // relations - mandatory
+  events       Event[]
+
+  @@unique(fields: [email, password], name: "account_details")
+  @@map("tb_organisation")
+}
+
+model Event {
+  // fields
+  id             Int          @id @default(autoincrement())
+  organisation   Organisation @relation(fields: [organisationId], references: [id])
+  organisationId Int
+  name           String       @db.VarChar(100)
+  location       String?
+  maxVolunteers  Int
+  // relations - mandatory
+  enrollments    Enrollment[]
+
+  @@map("tb_event")
+}
+
+model Enrollment {
+  id          Int              @id @default(autoincrement())
+  volunteer   Volunteer        @relation(fields: [volunteerId], references: [id])
+  volunteerId Int
+  event       Event            @relation(fields: [eventId], references: [id])
+  eventId     Int
+  status      EnrollmentStatus @default(PENDING)
+
+  @@map("tb_enrollment")
+}
+
+enum EnrollmentStatus {
+  PENDING
+  ASSIGNED
+  COMPLETED
+}
