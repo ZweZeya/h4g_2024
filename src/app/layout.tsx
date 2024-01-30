@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import SideBar from "@/components/SideBar/SideBar";
-
 
 const poppins = Poppins({ 
   subsets: ["latin"], 
@@ -21,9 +19,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.className}` + " grid grid-cols-6"} suppressHydrationWarning={true}>
-        <div className="col-span-1"><SideBar /></div>
-        <div className="col-span-5">{children}</div>
+      <body className={poppins.className} suppressHydrationWarning={true}>
+        {children}
       </body>
     </html>
   );
