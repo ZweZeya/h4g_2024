@@ -4,7 +4,7 @@ import {
     CalendarDays, 
     Mail, 
     Pencil,
-    LogOutIcon
+    LogOut
 } from 'lucide-react';
 import SideBarItem from './SideBarItem';
 
@@ -26,7 +26,7 @@ const SideBar = () => {
             <div className="flex flex-col gap-7 px-7 mt-auto mb-7">
                 <hr className="border-[#D2D2D2]" />
                 <div className="flex items-center gap-3 cursor-pointer" onClick={logout}>
-                    <div className="text-white bg-black p-4 rounded-full"><LogOutIcon /></div>
+                    <div className="text-white bg-black p-4 rounded-full"><LogOut /></div>
                     <p>Logout</p>
                 </div>
             </div>
