@@ -10,7 +10,7 @@ const HomePage = () => {
                 <div className="col-span-2">
                     <div className="flex items-center">
                         <p>Explore Volunteering Events</p>
-                        <Link className="ml-auto hover:underline" href="/explore">View All</Link>
+                        <p>View All</p>
                     </div>
                 </div>
                 <div className="col-span-1 flex flex-col gap-3 items-center">
