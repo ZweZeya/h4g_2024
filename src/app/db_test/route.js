@@ -38,48 +38,109 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var client_1 = require("@prisma/client");
 var prisma = new client_1.PrismaClient();
-function AddOrganisation(name, email, pw) {
+function AddOrganisation(_a) {
+    var name = _a.name, email = _a.email, password = _a.password, mobileNumber = _a.mobileNumber;
     return __awaiter(this, void 0, void 0, function () {
         var user, createUser, organisation;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
                     user = {
                         email: email,
-                        hashPassword: pw
+                        hashPassword: password
                     };
                     return [4 /*yield*/, prisma.user.create({ data: user })];
                 case 1:
-                    createUser = _a.sent();
+                    createUser = _b.sent();
                     organisation = {
                         name: name,
+                        mobileNumber: mobileNumber,
                         user: {
                             connect: createUser
                         }
                     };
                     return [4 /*yield*/, prisma.organisation.create({ data: organisation })];
                 case 2:
-                    _a.sent();
+                    _b.sent();
                     return [2 /*return*/];
             }
         });
     });
 }
-function RetrieveOrganisations() {
+function AddVolunteer(_a) {
+    var name = _a.name, email = _a.email, password = _a.password, bday = _a.bday, mobileNumber = _a.mobileNumber, availability = _a.availability;
     return __awaiter(this, void 0, void 0, function () {
-        var orgs, o;
+        var user, createUser, volunteer;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    user = {
+                        email: email,
+                        hashPassword: password
+                    };
+                    return [4 /*yield*/, prisma.user.create({ data: user })];
+                case 1:
+                    createUser = _b.sent();
+                    volunteer = {
+                        name: name,
+                        mobileNumber: mobileNumber,
+                        bday: bday,
+                        availability: availability,
+                        user: {
+                            connect: createUser
+                        }
+                    };
+                    return [4 /*yield*/, prisma.volunteer.create({ data: volunteer })];
+                case 2:
+                    _b.sent();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function RetrieveUsers() {
+    return __awaiter(this, void 0, void 0, function () {
+        var users, _i, users_1, o, s;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, prisma.organisation.findMany()];
+                case 0: return [4 /*yield*/, prisma.user.findMany({
+                        include: {
+                            volunteer: true,
+                            organisation: true,
+                            admin: true
+                        }
+                    })];
                 case 1:
-                    orgs = _a.sent();
-                    for (o in orgs) {
-                        console.log(o);
+                    users = _a.sent();
+                    for (_i = 0, users_1 = users; _i < users_1.length; _i++) {
+                        o = users_1[_i];
+                        s = o.id + "|";
+                        if (o.volunteer != null)
+                            s += "Volunteer |" + o.volunteer.name;
+                        if (o.organisation != null)
+                            s += "Organisation |" + o.organisation.name;
+                        if (o.admin != null)
+                            s += "Admin |" + o.admin.name;
+                        s += "|" + o.email + "|" + o.hashPassword;
+                        console.log(s);
                     }
                     return [2 /*return*/];
             }
         });
     });
 }
-//AddOrganisation("Big At Heart", "bah@mail.com", "bah");
-RetrieveOrganisations();
+// AddOrganisation({
+//     name: "My Company",
+//     email: "my@mail.com",
+//     password: "my",
+//     mobileNumber: "11111111"
+// });
+// AddVolunteer({
+//     name: "Sush1",
+//     email: "sushi@mail.com",
+//     password: "sushi",
+//     mobileNumber: "11111111",
+//     availability: Availability.WEEKEND,
+//     bday: new Date("2003-01-01")
+// });
+RetrieveUsers();
