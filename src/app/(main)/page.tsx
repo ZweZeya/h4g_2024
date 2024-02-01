@@ -9,7 +9,10 @@ const HomePage = () => {
                 <div className="col-span-2">
                     <div className="flex items-center">
                         <p>Explore Volunteering Events</p>
-                        <p className="ml-auto">View All</p>
+                        <p>View All</p>
+                    </div>
+                    <div>
+
                     </div>
                 </div>
                 <div className="col-span-1 flex flex-col gap-3 items-center">
