@@ -1,26 +1,27 @@
+import { Prisma } from '@prisma/client'
 import { NextResponse, NextRequest } from 'next/server';
 import prisma from '../../../lib/prisma'
-import { Prisma } from '@prisma/client'
 
 export async function POST(request: NextRequest) {
     try {
         const requestBody = await request.json();
-        const { email, password, name } = requestBody;
+        const { email, password, name, mobileNumber } = requestBody;
 
-        let userInputData: Prisma.UserCreateInput = {
+        let user: Prisma.UserCreateInput = {
             email: email,
             hashPassword: password
         };
 
-        const userData = await prisma.user.create({ data: userInputData });
+        const createUser = await prisma.user.create({ data: user });
 
-        let inputData: Prisma.AdminCreateInput = {
+        let organisation: Prisma.OrganisationCreateInput = {
             name: name,
+            mobileNumber: mobileNumber,
             user: {
-                connect: userData
+                connect: createUser
             }
         }
-        const organisationData = await prisma.admin.create({ data: inputData });
+        const organisationData = await prisma.organisation.create({ data: organisation });
 
         return NextResponse.json(organisationData, { status: 201 });
     } catch (error) {
@@ -31,16 +32,17 @@ export async function POST(request: NextRequest) {
 export async function PATCH(request: NextRequest) {
     try {
         const requestBody = await request.json();
-        const { id, name } = requestBody;
-        const inputData: Prisma.AdminUpdateInput = {
-            name: name
+        const { id, name, mobileNumber } = requestBody;
+        const org: Prisma.OrganisationUpdateInput = {
+            name: name,
+            mobileNumber: mobileNumber
         };
 
-        const updateEvent = await prisma.admin.update({
+        const updateEvent = await prisma.organisation.update({
             where: {
                 id: id,
             },
-            data: inputData
+            data: org
         });
         return NextResponse.json(updateEvent, { status: 201 });
     } catch (error) {
@@ -52,9 +54,9 @@ export async function DELETE(request: NextRequest) {
     try {
         const requestBody = await request.json()
         const { id } = requestBody;
-        const deleteEvent = await prisma.admin.delete({
+        const deleteEvent = await prisma.organisation.delete({
             where: {
-                id: id
+                id: id,
             },
         });
         return NextResponse.json(deleteEvent, { status: 201 });
