@@ -1,83 +1,59 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import { NextResponse, NextRequest } from 'next/server';
 import prisma from '../../../lib/prisma'
 import { Prisma } from '@prisma/client';
 
+export async function POST(request: NextRequest) {
+    try {
+        const requestBody = await request.json();
+        const { organisation, name, location, maxVolunteers } = requestBody;
+        const event: Prisma.EventCreateInput = {
+            organisation: organisation,
+            location: location,
+            name: name,
+            maxVolunteers: maxVolunteers,
+        };
+        const createEvent = await prisma.event.create({
+            data: event
+        });
+        return NextResponse.json(createEvent, { status: 201 });
+    } catch (error) {
+        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
+    }
+}
 
+export async function PATCH(request: NextRequest) {
+    try {
+        const requestBody = await request.json();
+        const { organisation, name, location, maxVolunteers, eventId } = requestBody;
+        const event: Prisma.EventUpdateInput = {
+            organisation: organisation,
+            name: name,
+            location: location,
+            maxVolunteers: maxVolunteers
+        };
+        const updateEvent = await prisma.event.update({
+            where: {
+                id: eventId,
+            },
+            data: event
+        });
+        return NextResponse.json(updateEvent, { status: 201 });
+    } catch (error) {
+        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
+    }
+}
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    switch (req.method) {
-
-        // GET Method - NOT ALLOWED
-        case 'GET':
-            res.status(405).json({ message: 'Method not allowed'});
-            break;
-
-        // POST Method - Creates new event
-        // Requires organisation, name, location, maxVolunteers parameters in the request body
-        case 'POST':
-            try {
-                const { organisation, name, location, maxVolunteers } = req.body;
-                const event: Prisma.EventCreateInput = {
-                    organisation: organisation,
-                    location: location,
-                    name: name,
-                    maxVolunteers: maxVolunteers,
-                };
-                const createEvent = await prisma.event.create({
-                    data: event
-                });
-                res.status(201).json(createEvent);
-            } catch (error) {
-                res.status(500).json({ message: 'Internal Server Error' });
-            }
-            break;
-
-        // PUT Method NOT ALLOWED
-        case 'PUT':
-            res.status(405).json({ message: 'Method not allowed'});
-            break;
-
-        // PATCH Method should update information about an event
-        // Required parameters in request body: eventId
-        // Optional parameters in request body: organisation, name, location, maxVolunteers (Information to be updated about event)
-        case 'PATCH':
-            try {
-                const { organisation, name, location, maxVolunteers, eventId } = req.body;
-                const event: Prisma.EventUpdateInput = {
-                    organisation: organisation,
-                    name: name,
-                    location: location,
-                    maxVolunteers: maxVolunteers
-                };
-                const updateEvent = await prisma.event.update({
-                    where: {
-                        id: eventId,
-                    },
-                    data: event
-                });
-                res.status(200).json(updateEvent);
-            } catch (error) {
-                res.status(500).json({ message: 'Internal Server Error' });
-            }
-            break;
-
-        // DELETE Method should remove an event
-        // Required parameters in request body: eventId
-        case 'DELETE':
-            try {
-                const { eventId } = req.body;
-                const deleteEvent = await prisma.event.delete({
-                    where: {
-                        id: eventId,
-                    },
-                });
-                res.status(200).json(deleteEvent);
-            } catch (error) {
-                res.status(500).json({ message: 'Internal Server Error' });
-            }
-            break;
-        default:
-            res.status(405).json({ message: 'Method not allowed'});
-            break;
+export async function DELETE(request: NextRequest) {
+    try {
+        const requestBody = await request.json()
+        const { eventId } = requestBody;
+        const deleteEvent = await prisma.event.delete({
+            where: {
+                id: eventId,
+            },
+        });
+        return NextResponse.json(deleteEvent, { status: 201 });
+    } catch (error) {
+        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
     }
 }

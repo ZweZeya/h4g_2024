@@ -1,20 +1,20 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import { NextRequest, NextResponse } from 'next/server'
 import prisma from '../../../lib/prisma'
+import { Prisma } from '@prisma/client';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    switch (req.method) {
-        case 'GET':
-            res.status(405).json({ message: 'Method not allowed'});
-        case 'POST':
-            break;
-        case 'PUT':
-            break;
-        case 'PATCH':
-            break;
-        case 'DELETE':
-            break;
-        default:
-            res.status(405).json({ message: 'Method not allowed'});
-            break;
+export async function POST(request: NextRequest) {
+    try {
+        const requestBody = await request.json();
+        const { volunteer, event } = requestBody;
+        const enrollment: Prisma.EnrollmentCreateInput = {
+            volunteer: volunteer,
+            event: event
+        };
+        const createEnrollment = await prisma.enrollment.create({
+            data: enrollment
+        });
+        return NextResponse.json(createEnrollment, { status: 201 });
+    } catch (error) {
+        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
     }
 }
