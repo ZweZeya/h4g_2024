@@ -5,9 +5,9 @@ import { Prisma } from '@prisma/client';
 export async function POST(request: NextRequest) {
     try {
         const requestBody = await request.json();
-        const { organisation, name, location, maxVolunteers } = requestBody;
+        const { organisationId, name, location, maxVolunteers } = requestBody;
         const event: Prisma.EventCreateInput = {
-            organisation: organisation,
+            organisation: { connect: { id: organisationId } },
             location: location,
             name: name,
             maxVolunteers: maxVolunteers,
@@ -15,8 +15,10 @@ export async function POST(request: NextRequest) {
         const createEvent = await prisma.event.create({
             data: event
         });
+
         return NextResponse.json(createEvent, { status: 201 });
     } catch (error) {
+        console.log(error)
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
     }
 }
