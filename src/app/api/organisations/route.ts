@@ -6,7 +6,7 @@ const sampleJSON = {
     "email": "BAH@mail.com",
     "password": "bigassheart",
     "name": "Big At Heart",
-    "mobileNumber": "66666666",
+    "mobileNumber": "66666666"
 }
 
 export async function POST(request: NextRequest) {
@@ -32,6 +32,7 @@ export async function POST(request: NextRequest) {
 
         return NextResponse.json(organisationData, { status: 201 });
     } catch (error) {
+        console.log(error);
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
     }
 }
@@ -53,21 +54,7 @@ export async function PATCH(request: NextRequest) {
         });
         return NextResponse.json(updateEvent, { status: 201 });
     } catch (error) {
-        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
-    }
-}
-
-export async function DELETE(request: NextRequest) {
-    try {
-        const requestBody = await request.json()
-        const { id } = requestBody;
-        const deleteEvent = await prisma.organisation.delete({
-            where: {
-                id: id,
-            },
-        });
-        return NextResponse.json(deleteEvent, { status: 201 });
-    } catch (error) {
+        console.log(error);
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
     }
 }

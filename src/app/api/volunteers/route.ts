@@ -67,19 +67,3 @@ export async function PATCH(request: NextRequest) {
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
     }
 }
-
-export async function DELETE(request: NextRequest) {
-    try {
-        const requestBody = await request.json()
-        const { id } = requestBody;
-        const deleteEvent = await prisma.volunteer.delete({
-            where: {
-                id: id,
-            },
-        });
-        return NextResponse.json(deleteEvent, { status: 201 });
-    } catch (error) {
-        console.log(error);
-        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
-    }
-}

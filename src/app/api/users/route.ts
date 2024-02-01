@@ -11,7 +11,6 @@ export async function PATCH(request: NextRequest) {
             hashPassword: password
         };
 
-
         const updateEvent = await prisma.user.update({
             where: {
                 id: id,
@@ -20,6 +19,7 @@ export async function PATCH(request: NextRequest) {
         });
         return NextResponse.json(updateEvent, { status: 201 });
     } catch (error) {
+        console.log(error);
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
     }
 }
@@ -35,6 +35,7 @@ export async function DELETE(request: NextRequest) {
         });
         return NextResponse.json(deleteEvent, { status: 201 });
     } catch (error) {
+        console.log(error);
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
     }
 }

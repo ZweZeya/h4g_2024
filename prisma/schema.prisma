@@ -27,7 +27,7 @@ model User {
 
 model Admin {
   id     Int    @id @default(autoincrement())
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId Int    @unique
   name   String @db.VarChar(100)
 
@@ -37,7 +37,7 @@ model Admin {
 model Volunteer {
   // fields
   id           Int           @id @default(autoincrement())
-  user         User          @relation(fields: [userId], references: [id])
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId       Int           @unique
   name         String        @db.VarChar(100)
   mobileNumber String
@@ -60,7 +60,7 @@ enum Availability {
 model Organisation {
   // fields
   id           Int     @id @default(autoincrement())
-  user         User    @relation(fields: [userId], references: [id])
+  user         User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId       Int     @unique
   name         String  @db.VarChar(100)
   mobileNumber String
@@ -73,7 +73,7 @@ model Organisation {
 model Event {
   // fields
   id             Int          @id @default(autoincrement())
-  organisation   Organisation @relation(fields: [organisationId], references: [id])
+  organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
   organisationId Int
   name           String       @db.VarChar(100)
   location       String?
@@ -88,9 +88,9 @@ model Event {
 
 model Enrollment {
   id          Int              @id @default(autoincrement())
-  volunteer   Volunteer        @relation(fields: [volunteerId], references: [id])
+  volunteer   Volunteer        @relation(fields: [volunteerId], references: [id], onDelete: Cascade)
   volunteerId Int
-  event       Event            @relation(fields: [eventId], references: [id])
+  event       Event            @relation(fields: [eventId], references: [id], onDelete: Cascade)
   eventId     Int
   status      EnrollmentStatus @default(PENDING)
 
@@ -107,14 +107,14 @@ enum EnrollmentStatus {
 model Certificate {
   // fields
   id          Int       @id @default(autoincrement())
-  volunteer   Volunteer @relation(fields: [volunteerId], references: [id])
+  volunteer   Volunteer @relation(fields: [volunteerId], references: [id], onDelete: Cascade)
   volunteerId Int
 }
 
 model InboxNotification {
   // fields
   id      Int    @id @default(autoincrement())
-  user    User   @relation(fields: [userId], references: [id])
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId  Int
   message String @db.VarChar(255)
 }
