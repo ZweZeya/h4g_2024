@@ -1,5 +1,6 @@
 import SmallCalendar from "@/components/Dashboard/SmallCalendar";
 import Header from "@/components/Layout/Header";
+import Link from "next/link";
 
 const HomePage = () => {
     return (
