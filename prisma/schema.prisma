@@ -63,7 +63,7 @@ model Organisation {
   user         User    @relation(fields: [userId], references: [id])
   userId       Int     @unique
   name         String  @db.VarChar(100)
-  mobileNumber Int
+  mobileNumber Int?
   // relations - mandatory cos prisma
   events       Event[]
 
