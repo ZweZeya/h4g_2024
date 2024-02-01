@@ -5,12 +5,14 @@ import { Prisma } from '@prisma/client';
 export async function POST(request: NextRequest) {
     try {
         const requestBody = await request.json();
-        const { organisationId, name, location, maxVolunteers } = requestBody;
+        const { organisationId, name, location, maxVolunteers, startDate, endDate } = requestBody;
         const event: Prisma.EventCreateInput = {
             organisation: { connect: { id: organisationId } },
             location: location,
             name: name,
             maxVolunteers: maxVolunteers,
+            startDate: startDate,
+            endDate: endDate
         };
         const createEvent = await prisma.event.create({
             data: event

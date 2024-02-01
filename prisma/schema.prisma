@@ -78,6 +78,8 @@ model Event {
   name           String       @db.VarChar(100)
   location       String?
   maxVolunteers  Int
+  startDate      DateTime
+  endDate        DateTime
   // relations - mandatory cos prisma
   enrollments    Enrollment[]
 
