@@ -12,9 +12,6 @@ const HomePage = () => {
                         <p>Explore Volunteering Events</p>
                         <p>View All</p>
                     </div>
-                    <div>
-
-                    </div>
                 </div>
                 <div className="col-span-1 flex flex-col gap-3 items-center">
                     <SmallCalendar />
