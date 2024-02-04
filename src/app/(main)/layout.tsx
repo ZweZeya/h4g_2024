@@ -12,7 +12,7 @@ const MainLayout = ({
     }
 
     return (
-        <main className="grid grid-cols-6" suppressHydrationWarning={true}>
+        <main className="grid grid-cols-6 h-screen" suppressHydrationWarning={true}>
             <div className="col-span-1"><SideBar /></div>
             <div className="col-span-5">
                 <div className="px-7 py-5 pl-12">
