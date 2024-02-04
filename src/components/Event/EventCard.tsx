@@ -1,20 +1,20 @@
-import {useState} from "react";
+import { useState } from "react";
+import prisma from '../../lib/prisma'
+import { Prisma } from '@prisma/client';
 
-const EventCard = () => {
-    const [cards] = useState([
-        {
-            title: 'LNY Celebration with Migrant Brothers',
-            text: ''
-        }
-    ])
+
+export type EventCardProps = {
+    id: number,
+    name: string,
+    location: string
+}
+const EventCard = ({ id, name, location }: EventCardProps) => {
     return (
         <div>
-            <div className="cards">
             <div className="card">
-            
+                <h4>{name}</h4>
+                <p>{location}</p>
             </div>
-            </div>
-            
         </div>
     );
 };

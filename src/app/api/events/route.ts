@@ -2,6 +2,15 @@ import { NextResponse, NextRequest } from 'next/server';
 import prisma from '../../../lib/prisma'
 import { Prisma } from '@prisma/client';
 
+const sampleJSON = {
+    "location": "Serangoon 17171",
+    "maxVolunteers": 20,
+    "name": "Charity Event 1",
+    "organisationId": 1,
+    "startDate": "2024-01-02T17:29:49.023Z",
+    "endDate": "2024-01-05T17:29:49.023Z"
+}
+
 export async function POST(request: NextRequest) {
     try {
         const requestBody = await request.json();

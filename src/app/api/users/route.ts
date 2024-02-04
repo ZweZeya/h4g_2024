@@ -2,6 +2,16 @@ import { NextResponse, NextRequest } from 'next/server';
 import prisma from '../../../lib/prisma'
 import { Prisma } from '@prisma/client'
 
+export async function GET(request: NextRequest) {
+    try {
+        const users = await prisma.user.findMany();
+        return NextResponse.json(users, { status: 201 });
+    } catch (error) {
+        console.log(error);
+        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
+    }
+}
+
 export async function PATCH(request: NextRequest) {
     try {
         const requestBody = await request.json();
