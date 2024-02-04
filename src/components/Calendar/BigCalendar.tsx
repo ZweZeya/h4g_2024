@@ -6,12 +6,13 @@ import { Event } from '@/types/EventTypes';
 
 const BigCalendar = ({events}: {events: Event[]}) => {
     return (
-        <div className="max-h-screen mt-7">
+        <div className="mt-5">
             <FullCalendar
                 plugins={[ dayGridPlugin ]}
                 initialView="dayGridMonth"
                 height="auto"
                 events={events}
+                eventTextColor="black"
             />
         </div>
     );

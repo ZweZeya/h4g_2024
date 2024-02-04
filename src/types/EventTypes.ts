@@ -4,4 +4,5 @@ export type Event = {
     start: string;
     end?: string;
     color?: string;
+    location?: string; 
 }
