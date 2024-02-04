@@ -14,6 +14,7 @@ const EventCard = ({ id, name, location }: EventCardProps) => {
             <div className="card">
                 <h4>{name}</h4>
                 <p>{location}</p>
+                <br />
             </div>
         </div>
     );
