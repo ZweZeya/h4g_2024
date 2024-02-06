@@ -1,5 +1,5 @@
 import { Event } from "@/types/EventTypes";
-import UpcomingEventCard from "./EventCard";
+import UpcomingEventCard from "./UpcomingEventCard";
 import { ScrollArea } from "@/components/ui/scroll-area"
 
 const UpcomingEventsList = ({events}: {events: Event[]}) => {
