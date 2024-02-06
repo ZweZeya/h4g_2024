@@ -5,6 +5,7 @@ const AuthLayout = ({
 }>) => {
     return (
         <main suppressHydrationWarning={true}>
+            <p>Layout</p>
             {children}
         </main>
     );
