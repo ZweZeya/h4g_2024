@@ -22,7 +22,7 @@ import React from 'react';
 
 
 const loginFormSchema = z.object({
-    email: z.string().email("Invalid email").min(1),
+    email: z.string().min(1),
     password: z.string().min(3),
     confirmPassword: z.string().min(3),
     role: z.enum(["adminstrator", "organisation", "volunteer"]),
@@ -32,14 +32,19 @@ const LoginForm = () => {
     const form = useForm<z.infer<typeof loginFormSchema>>({
         resolver: zodResolver(loginFormSchema),
         defaultValues: {
-            email: "",
-            password: "",
-            role: "adminstrator",
+            email: "mono.@mail.com",
+            password: "monomono",
+            role: "volunteer",
         },
     })
 
     function onSubmit(values: z.infer<typeof loginFormSchema>) {
-        console.log(values);
+        try {
+            console.log(values);
+            
+        } catch (error) {
+            if (error) { throw error; }
+        }
     }
 
     return (
@@ -74,7 +79,7 @@ const LoginForm = () => {
                 />
                 <FormField
                     control={form.control}
-                    name="email"
+                    name="role"
                     render={({ field }) => (
                         <FormItem>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>

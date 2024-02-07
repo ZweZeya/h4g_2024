@@ -1,5 +1,8 @@
+"use client";
+
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { User } from './User';
+import userStore from '@/store/userStore';
 
 interface AuthContextProps {
     user: User | null;

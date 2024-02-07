@@ -1,11 +1,17 @@
 import { create } from "zustand";
+import { User } from "@/components/Auth/User";
+
 
 export interface userStoreState {
-    isAuthenticated: boolean;
+    user: User | null;
+    login: (user: User) => void;
+    logout: () => void;
 }
 
 const userStore = create<userStoreState>((set) => ({
-    isAuthenticated: true,
+    user: null,
+    login: (u: User) => set({ user: u }),
+    logout: () => set({ user: null }),
 }));
 
 export default userStore;

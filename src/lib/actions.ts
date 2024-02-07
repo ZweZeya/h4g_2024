@@ -64,7 +64,6 @@ async function signInAsAdmin(formData: FormData) {
 
 export async function authenticate(formData: FormData) {
     try {
-        var auth = useAuth();
         var user;
         switch (formData.get("type")?.toString()) {
             case "volunteer":
@@ -79,7 +78,7 @@ export async function authenticate(formData: FormData) {
             default:
                 throw Error("Invalid User Type");
         }
-        auth.login(user);
+        return user;
     } catch (error) {
         if (error) { throw error; }
     }

@@ -1,5 +1,3 @@
-import SideBar from "@/components/SideBar/SideBar";
-import { CircleUserRound } from "lucide-react";
 
 const MainLayout = ({
     organisation,
