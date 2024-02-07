@@ -4,8 +4,7 @@ const AuthLayout = ({
     children: React.ReactNode;
 }>) => {
     return (
-        <main suppressHydrationWarning={true}>
-            <p>Layout</p>
+        <main suppressHydrationWarning={true} className="h-screen px-5">
             {children}
         </main>
     );
