@@ -1,10 +1,11 @@
+import InboxNotification from "@/components/Inbox/InboxNotification";
+
 const InboxPage = () => {
     return (
         <div>
-            <h1>Inbox Page</h1>
+            <InboxNotification>Your enrollment to eventname has been approved! See you there!:D</InboxNotification>
         </div>
     );
 };
-  
+
 export default InboxPage;
-  

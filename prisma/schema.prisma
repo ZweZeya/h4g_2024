@@ -102,6 +102,7 @@ enum EnrollmentStatus {
   REJECTED
   ASSIGNED
   COMPLETED
+  NONE
 }
 
 model Certificate {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import prisma from '../../lib/prisma'
-import { Prisma } from '@prisma/client';
+import { EnrollmentStatus, Prisma } from '@prisma/client';
 import { Button } from "../ui/button";
 
 
@@ -12,6 +12,20 @@ export type EventCardProps = {
     start: Date,
     end: Date
 
+}
+
+async function checkStatus(eventId: number, volunteerId: number): EnrollmentStatus {
+    try {
+        const enrollment = await prisma.enrollment.findFirstOrThrow({
+            where: {
+                volunteerId: volunteerId,
+                eventId: eventId
+            }
+        })
+    } catch (error) {
+        return EnrollmentStatus.NONE;
+    }
+    return EnrollmentStatus.PENDING;
 }
 
 const ExploreEventCard = ({ id, name, location, organisation }: EventCardProps) => {
