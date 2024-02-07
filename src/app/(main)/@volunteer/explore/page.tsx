@@ -3,7 +3,11 @@ import ExploreEventsList from '@/components/Event/ExploreEventsList';
 
 const ExplorePage = async () => {
     return (
-        <ExploreEventsList />
+        <div>
+
+            <ExploreEventsList />
+        </div>
+
     );
 };
 
