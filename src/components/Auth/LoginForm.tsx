@@ -18,7 +18,7 @@ import {
   } from "@/components/ui/select"
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { authenticate } from "@/lib/actions";
+import { authenticate, redirectHome } from "@/lib/actions";
 import userStore from "@/store/userStore";
 import React from 'react';
 
@@ -34,8 +34,8 @@ const LoginForm = () => {
     const form = useForm<z.infer<typeof loginFormSchema>>({
         resolver: zodResolver(loginFormSchema),
         defaultValues: {
-            email: "BAH@mail.com",
-            password: "bigassheart",
+            email: "",
+            password: "",
             role: "organisation",
         },
     })
@@ -43,10 +43,9 @@ const LoginForm = () => {
     const onSubmit = async (values: z.infer<typeof loginFormSchema>) => {
         try {
             const user = await authenticate(values);
-            // if (user) login(user);
-            // else throw new Error("user not found");
+            redirectHome();
         } catch (error) {
-            if (error) { throw error; }
+            form.reset();
         }
     }
 

@@ -4,6 +4,7 @@ import { UserType } from "@/components/Auth/User";
 import { cookies } from 'next/headers';
 import jwt from "jsonwebtoken";
 import { redirect } from 'next/navigation'
+import { use } from "react";
 
 async function findVolunteer(data: any) {
     try {
@@ -98,4 +99,8 @@ export async function authenticate(data: any) {
 
 export async function redirectLogin() {
     redirect(`/login`);
+}
+
+export async function redirectHome() {
+    redirect('/');
 }
