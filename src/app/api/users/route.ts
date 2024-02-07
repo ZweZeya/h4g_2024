@@ -1,6 +1,13 @@
 import { NextResponse, NextRequest } from 'next/server';
 import prisma from '../../../lib/prisma'
 import { Prisma } from '@prisma/client'
+import { User } from '@/components/Auth/User';
+import { useAuth } from '@/components/Auth/AuthProvider';
+
+
+export async function GET(request: NextRequest) {
+    return NextResponse.json(useAuth().user);
+}
 
 export async function PATCH(request: NextRequest) {
     try {
