@@ -15,7 +15,7 @@ const MainLayout = ({
     else user = JSON.parse(cookie.value)
 
     return (
-        <>{user!.type == UserType.VOLUNTEER ? volunteer : organisation}</>
+        <>{user?.type == UserType.VOLUNTEER ? volunteer : organisation}</>
     );
 };
 
