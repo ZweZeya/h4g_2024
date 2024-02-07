@@ -4,7 +4,7 @@ const InboxNotification = ({ children }: { children: string }) => {
     return (
         <section className="mb-12">
             <div
-                className="alert alert-dismissible fade show items-center justify-between rounded-lg bg-blue-300 py-4 px-6 text-center text-white md:flex md:text-left">
+                className="alert alert-dismissible fade show items-center justify-between rounded-lg bg-cream py-4 px-6 text-center text-mygreen md:flex md:text-left">
                 <div className="mb-4 flex flex-wrap items-center justify-center md:mb-0 md:justify-start">
                     {/* <span className="mr-2 [&>svg]:h-5 [&>svg]:w-5">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
