@@ -2,7 +2,7 @@ import { EventCardProps } from "../Event/ExploreEventCard";
 import { Button } from "@/components/ui/button";
 
 const SmallEvents = ({ event }: { event: EventCardProps }) => {
-    const startDateArr: string[] = new Date(event.start).toDateString().split(" ");
+    const startDateArr: string[] = event.start.toDateString().split(" ");
     const month = startDateArr[1];
     const date = startDateArr[2];
 

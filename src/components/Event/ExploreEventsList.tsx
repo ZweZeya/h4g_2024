@@ -16,7 +16,13 @@ const ExploreEventsList = async () => {
     return (
         <div>
             {events.map(e =>
-                <ExploreEventCard id={e.id} name={e.name} location={e.location} organisation={findOrganisation(e.organisationId)} />
+                <ExploreEventCard
+                    id={e.id}
+                    name={e.name}
+                    location={e.location}
+                    start={e.start}
+                    end={e.end}
+                    organisation={findOrganisation(e.organisationId)} />
             )}
         </div >
     )
