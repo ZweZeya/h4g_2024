@@ -3,7 +3,7 @@ import prisma from '../../../lib/prisma'
 import { Prisma } from '@prisma/client';
 
 const sampleJSON = {
-    "userId": 1,
+    "userId": 10,
     "message": "Your enrollment for EventName has been approved! See you there!"
 }
 

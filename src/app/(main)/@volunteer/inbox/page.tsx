@@ -1,9 +1,18 @@
 import InboxNotification from "@/components/Inbox/InboxNotification";
+import prisma from '../../../../lib/prisma'
 
-const InboxPage = () => {
+const InboxPage = async () => {
+    const inbox = await prisma.inboxNotification.findMany({
+        where: {
+            userId: 10
+        }
+    });
     return (
         <div>
-            <InboxNotification>Your enrollment to eventname has been approved! See you there!:D</InboxNotification>
+            <h1>Inbox</h1>
+            {inbox && inbox.map(i =>
+                <InboxNotification>{i.message}</InboxNotification>
+            )}
         </div>
     );
 };
