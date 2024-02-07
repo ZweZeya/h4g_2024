@@ -4,6 +4,7 @@ import SmallEventsList from '@/components/Dashboard/SmallEventsList';
 import Header from "@/components/Layout/Header";
 import Link from "next/link";
 import { Event } from '@/types/EventTypes';
+import SmallNotifications from '@/components/Dashboard/SmallNotifications';
 
 const HomePage = async () => {
     const events: Event[] = (await prisma.event.findMany()).map((e: any) => {
@@ -31,6 +32,14 @@ const HomePage = async () => {
                 </div>
                 <div className="col-span-1 flex flex-col gap-3 items-center">
                     <SmallCalendar />
+                    <div className="col-span-2">
+                        <div className="flex flex-row gap-40 items-center">
+                            <div><p>Inbox</p>
+                                </div>
+                                <div><Link className="ml-auto hover:underline" href="/inbox">View All</Link></div>
+                            </div>
+                        </div>
+                    <SmallNotifications />
                 </div>
             </div>
         </div>

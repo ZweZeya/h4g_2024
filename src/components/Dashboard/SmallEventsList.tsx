@@ -1,4 +1,3 @@
-import { Event } from "@/types/EventTypes";
 import SmallEvents from "./SmallEvents";
 import { ScrollArea } from "@/components/ui/scroll-area"
 
