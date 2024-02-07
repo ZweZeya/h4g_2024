@@ -1,4 +1,4 @@
-import prisma from '../../../lib/prisma'
+import prisma from '../../../../lib/prisma'
 import BigCalendar from "@/components/Calendar/BigCalendar";
 import UpcomingEventsList from "@/components/Calendar/UpcomingEventsList";
 import { Event } from '@/types/EventTypes';
