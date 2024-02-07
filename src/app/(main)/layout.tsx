@@ -8,7 +8,6 @@ const MainLayout = ({
     organisation: React.ReactNode;
     volunteer: React.ReactNode;
 }>) => {
-
     return (
         <>{volunteer}</>
     );
