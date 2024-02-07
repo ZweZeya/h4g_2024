@@ -1,12 +1,13 @@
 import SideBar from "@/components/SideBar/SideBar";
 import { CircleUserRound } from "lucide-react";
+import Link from "next/link";
 
 const OrganisationLayout = ({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) => {
-    const viewAccount = async() => {
+    const viewAccount = async () => {
         "use server";
         console.log("account");
     }
@@ -17,11 +18,13 @@ const OrganisationLayout = ({
             <div className="col-span-5">
                 <div className="px-7 py-5 pl-12">
                     <div className="flex">
-                        <div className="ml-auto cursor-pointer" onClick={viewAccount}>
-                            <CircleUserRound />
+                        <div className="ml-auto cursor-pointer">
+                            <Link href="/account">
+                                <CircleUserRound />
+                            </Link>
                         </div>
                     </div>
-                {children}
+                    {children}
                 </div>
             </div>
         </main>
