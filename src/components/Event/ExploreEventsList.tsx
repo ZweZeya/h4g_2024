@@ -1,6 +1,7 @@
 import React from 'react'
 import ExploreEventCard from './ExploreEventCard'
 import prisma from '../../lib/prisma'
+import { EnrollmentStatus } from '@prisma/client'
 
 async function findOrganisation(id: number): string {
     const orgName = await prisma.organisation.findUnique({

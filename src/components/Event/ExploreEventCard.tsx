@@ -22,13 +22,15 @@ async function checkStatus(eventId: number, volunteerId: number): EnrollmentStat
                 eventId: eventId
             }
         })
+        return enrollment.status;
     } catch (error) {
         return EnrollmentStatus.NONE;
     }
-    return EnrollmentStatus.PENDING;
 }
 
-const ExploreEventCard = ({ id, name, location, organisation }: EventCardProps) => {
+const ExploreEventCard = async ({ id, name, location, organisation }: EventCardProps) => {
+    const enroll_status: EnrollmentStatus = await checkStatus(id, 1);
+    console.log(name + " " + enroll_status);
     return (
         <div className="max-w-sm rounded overflow-hidden shadow-lg">
             <div className="px-6 py-4">
@@ -42,14 +44,20 @@ const ExploreEventCard = ({ id, name, location, organisation }: EventCardProps) 
 
             </div>
 
-            {/* <div className="px-6 pt-4 pb-2">
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
-            </div> */}
 
             <div className="px-6 pt-4 pb-2">
-                <Button>Enroll</Button>
+                {enroll_status &&
+                    enroll_status === EnrollmentStatus.NONE &&
+                    <Button>Enroll</Button>
+                }
+                {enroll_status &&
+                    enroll_status === EnrollmentStatus.PENDING &&
+                    <Button>Enroll</Button>
+                }
+                {enroll_status &&
+                    enroll_status === EnrollmentStatus.ASSIGNED &&
+                    <Button>Enroll</Button>
+                }
             </div>
 
         </div>
