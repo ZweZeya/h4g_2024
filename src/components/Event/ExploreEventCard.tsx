@@ -8,7 +8,10 @@ export type EventCardProps = {
     id: number,
     name: string,
     location: string,
-    organisation: string
+    organisation: string,
+    start: Date,
+    end: Date
+
 }
 
 const ExploreEventCard = ({ id, name, location, organisation }: EventCardProps) => {

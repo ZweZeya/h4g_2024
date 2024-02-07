@@ -26,7 +26,7 @@ const HomePage = async () => {
                         <Link className="ml-auto hover:underline" href="/explore">View All</Link>
                     </div>
                     <div className="col-span-1 flex flex-col gap-3 items-center">
-                            {/* <SmallEventsList events={events}  /> */}
+                        <SmallEventsList />
                     </div>
                 </div>
                 <div className="col-span-1 flex flex-col gap-3 items-center">
