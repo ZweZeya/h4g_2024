@@ -1,16 +1,17 @@
 'use server'
 import prisma from "./prisma";
-import { useAuth } from "@/components/Auth/AuthProvider";
 import { UserType } from "@/components/Auth/User";
+import { cookies } from 'next/headers';
+import jwt from "jsonwebtoken";
+import { redirect } from 'next/navigation'
 
-
-async function signInAsVolunteer(formData: FormData) {
+async function findVolunteer(data: any) {
     try {
         const user = await prisma.volunteer.findFirstOrThrow({
             where: {
                 user: {
-                    email: formData.get("email")?.toString(),
-                    hashPassword: formData.get("password")?.toString()
+                    email: data.email,
+                    hashPassword: data.password
                 }
             }
         })
@@ -23,13 +24,13 @@ async function signInAsVolunteer(formData: FormData) {
         throw error;
     }
 }
-async function signInAsOrganisation(formData: FormData) {
+async function findOrganisation(data: any) {
     try {
         const user = await prisma.organisation.findFirstOrThrow({
             where: {
                 user: {
-                    email: formData.get("email")?.toString(),
-                    hashPassword: formData.get("password")?.toString()
+                    email: data.email,
+                    hashPassword: data.password
                 }
             }
         })
@@ -42,13 +43,13 @@ async function signInAsOrganisation(formData: FormData) {
         throw error;
     }
 }
-async function signInAsAdmin(formData: FormData) {
+async function findAdmin(data: any) {
     try {
         const user = await prisma.admin.findFirstOrThrow({
             where: {
                 user: {
-                    email: formData.get("email")?.toString(),
-                    hashPassword: formData.get("password")?.toString()
+                    email: data.email,
+                    hashPassword: data.password
                 }
             }
         })
@@ -62,24 +63,39 @@ async function signInAsAdmin(formData: FormData) {
     }
 }
 
-export async function authenticate(formData: FormData) {
+async function handleLogin(user: any) {
+    // const token = jwt.sign({ userId: user.id }, "my secret", {
+    //     expiresIn: 60 * 60 * 24 * 7, // One week
+    // });
+    cookies().set('user-data', JSON.stringify(user), {
+        httpOnly: true,
+        maxAge: 60 * 60 * 24 * 7, // One week
+        path: '/',
+    })
+}
+
+export async function authenticate(data: any) {
     try {
         var user;
-        switch (formData.get("type")?.toString()) {
+        switch (data.role) {
             case "volunteer":
-                user = await signInAsVolunteer(formData);
+                user = await findVolunteer(data);
                 break;
             case "admin":
-                user = await signInAsAdmin(formData);
+                user = await findAdmin(data);
                 break;
             case "organisation":
-                user = await signInAsOrganisation(formData);
+                user = await findOrganisation(data);
                 break;
             default:
                 throw Error("Invalid User Type");
         }
-        return user;
+        await handleLogin(user);
     } catch (error) {
         if (error) { throw error; }
     }
+}
+
+export async function redirectLogin() {
+    redirect(`/login`);
 }

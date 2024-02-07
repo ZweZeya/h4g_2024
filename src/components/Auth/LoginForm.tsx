@@ -18,30 +18,33 @@ import {
   } from "@/components/ui/select"
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { authenticate } from "@/lib/actions";
+import userStore from "@/store/userStore";
 import React from 'react';
 
 
 const loginFormSchema = z.object({
     email: z.string().min(1),
     password: z.string().min(3),
-    confirmPassword: z.string().min(3),
     role: z.enum(["adminstrator", "organisation", "volunteer"]),
   })
 
 const LoginForm = () => {
+    const login = userStore((state) => state.login);
     const form = useForm<z.infer<typeof loginFormSchema>>({
         resolver: zodResolver(loginFormSchema),
         defaultValues: {
-            email: "mono.@mail.com",
-            password: "monomono",
-            role: "volunteer",
+            email: "BAH@mail.com",
+            password: "bigassheart",
+            role: "organisation",
         },
     })
 
-    function onSubmit(values: z.infer<typeof loginFormSchema>) {
+    const onSubmit = async (values: z.infer<typeof loginFormSchema>) => {
         try {
-            console.log(values);
-            
+            const user = await authenticate(values);
+            // if (user) login(user);
+            // else throw new Error("user not found");
         } catch (error) {
             if (error) { throw error; }
         }
@@ -59,7 +62,7 @@ const LoginForm = () => {
                     render={({ field }) => (
                         <FormItem>
                             <FormControl>
-                                <Input className="bg-[#F5F5F]" placeholder="Email" {...field} />
+                                <Input placeholder="Email" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
