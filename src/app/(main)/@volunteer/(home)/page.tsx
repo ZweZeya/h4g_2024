@@ -1,4 +1,4 @@
-import prisma from '../../lib/prisma'
+import prisma from '@/lib/prisma';
 import SmallCalendar from "@/components/Dashboard/SmallCalendar";
 import SmallEventsList from '@/components/Dashboard/SmallEventsList';
 import Header from "@/components/Layout/Header";
@@ -26,7 +26,7 @@ const HomePage = async () => {
                         <Link className="ml-auto hover:underline" href="/explore">View All</Link>
                     </div>
                     <div className="col-span-1 flex flex-col gap-3 items-center">
-                            <SmallEventsList events={events}  />
+                            {/* <SmallEventsList events={events}  /> */}
                     </div>
                 </div>
                 <div className="col-span-1 flex flex-col gap-3 items-center">

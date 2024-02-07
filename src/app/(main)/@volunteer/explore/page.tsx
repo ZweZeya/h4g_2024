@@ -1,4 +1,4 @@
-import prisma from '../../../lib/prisma'
+import prisma from '../../../../lib/prisma'
 import { Prisma } from '@prisma/client'
 import EventCard from '@/components/Event/EventCard';
 import { EventCardProps } from '@/components/Event/EventCard';
