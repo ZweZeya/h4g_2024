@@ -11,7 +11,7 @@ export type EventCardProps = {
     organisation: string
 }
 
-const EventCard = ({ id, name, location, organisation }: EventCardProps) => {
+const ExploreEventCard = ({ id, name, location, organisation }: EventCardProps) => {
     return (
         <div className="max-w-sm rounded overflow-hidden shadow-lg">
             <div className="px-6 py-4">
@@ -40,4 +40,4 @@ const EventCard = ({ id, name, location, organisation }: EventCardProps) => {
 
 };
 
-export default EventCard
+export default ExploreEventCard
