@@ -9,6 +9,13 @@ import {
     FormItem,
     FormMessage,
 } from "@/components/ui/form";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+  } from "@/components/ui/select"
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import React from 'react';
@@ -18,6 +25,7 @@ const loginFormSchema = z.object({
     email: z.string().email("Invalid email").min(1),
     password: z.string().min(3),
     confirmPassword: z.string().min(3),
+    role: z.enum(["adminstrator", "organisation", "volunteer"]),
   })
 
 const LoginForm = () => {
@@ -26,6 +34,7 @@ const LoginForm = () => {
         defaultValues: {
             email: "",
             password: "",
+            role: "adminstrator",
         },
     })
 
@@ -60,6 +69,27 @@ const LoginForm = () => {
                                 <Input placeholder="Password" type="password" {...field} />
                             </FormControl>
                             <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                        <FormItem>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <FormControl>
+                            <SelectTrigger>
+                                <SelectValue placeholder="Role" />
+                            </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                                <SelectItem value="adminstrator">Adminstrator</SelectItem>
+                                <SelectItem value="organisation">Organisation</SelectItem>
+                                <SelectItem value="volunteer">Volunteer</SelectItem>
+                            </SelectContent>
+                        </Select>
+                        <FormMessage />
                         </FormItem>
                     )}
                 />
