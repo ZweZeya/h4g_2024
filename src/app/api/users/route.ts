@@ -1,13 +1,6 @@
 import { NextResponse, NextRequest } from 'next/server';
 import prisma from '../../../lib/prisma'
 import { Prisma } from '@prisma/client'
-import { User } from '@/components/Auth/User';
-import { useAuth } from '@/components/Auth/AuthProvider';
-
-
-export async function GET(request: NextRequest) {
-    return NextResponse.json(useAuth().user);
-}
 
 export async function PATCH(request: NextRequest) {
     try {
@@ -46,26 +39,3 @@ export async function DELETE(request: NextRequest) {
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
     }
 }
-
-// TBC
-// async function RetrieveUsers() {
-//     const users = await prisma.user.findMany({
-//         include: {
-//             volunteer: true,
-//             organisation: true,
-//             admin: true
-//         }
-//     });
-//     for (var o of users) {
-//         var s = o.id + "|";
-//         if (o.volunteer != null)
-//             s += "Volunteer |" + o.volunteer.name;
-//         if (o.organisation != null)
-//             s += "Organisation |" + o.organisation.name;
-//         if (o.admin != null)
-//             s += "Admin |" + o.admin.name;
-
-//         s += "|" + o.email + "|" + o.hashPassword
-//         console.log(s);
-//     }
-// }
