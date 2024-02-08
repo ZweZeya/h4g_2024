@@ -65,9 +65,6 @@ async function findAdmin(data: any) {
 }
 
 async function handleLogin(user: any) {
-    // const token = jwt.sign({ userId: user.id }, "my secret", {
-    //     expiresIn: 60 * 60 * 24 * 7, // One week
-    // });
     cookies().set('user-data', JSON.stringify(user), {
         httpOnly: true,
         maxAge: 60 * 60 * 24 * 7, // One week
@@ -97,10 +94,11 @@ export async function authenticate(data: any) {
     }
 }
 
-export async function redirectLogin() {
-    redirect(`/login`);
-}
-
 export async function redirectHome() {
     redirect('/');
+}
+
+export async function logout() {
+    cookies().delete("user-data");
+    redirect("/login");
 }
