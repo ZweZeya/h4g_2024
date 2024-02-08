@@ -2,6 +2,7 @@ import { useState } from "react";
 import prisma from '../../lib/prisma'
 import { EnrollmentStatus, Prisma } from '@prisma/client';
 import { Button } from "../ui/button";
+import { Badge } from "../ui/badge";
 
 
 export type EventCardProps = {
@@ -48,15 +49,15 @@ const ExploreEventCard = async ({ id, name, location, organisation }: EventCardP
             <div className="px-6 pt-4 pb-2">
                 {enroll_status &&
                     enroll_status === EnrollmentStatus.NONE &&
-                    <Button>Enroll</Button>
+                    <Button variant="mine">Enroll</Button>
                 }
                 {enroll_status &&
                     enroll_status === EnrollmentStatus.PENDING &&
-                    <Button>Enroll</Button>
+                    <Badge variant="pending">Pending</Badge>
                 }
                 {enroll_status &&
                     enroll_status === EnrollmentStatus.ASSIGNED &&
-                    <Button>Enroll</Button>
+                    <Badge variant="assigned">Assigned</Badge>
                 }
             </div>
 
