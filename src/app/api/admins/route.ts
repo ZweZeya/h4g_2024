@@ -2,6 +2,12 @@ import { NextResponse, NextRequest } from 'next/server';
 import prisma from '../../../lib/prisma'
 import { Prisma } from '@prisma/client'
 
+const sampleJSON = {
+    "email": "admin@mail.com",
+    "password": "admin",
+    "name": "Admin 1"
+}
+
 export async function POST(request: NextRequest) {
     try {
         const requestBody = await request.json();

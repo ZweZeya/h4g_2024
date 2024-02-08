@@ -1,4 +1,4 @@
-import SideBar from "@/components/SideBar/SideBar";
+import VolunteerSideBar from "@/components/SideBar/VolunteerSideBar";
 import { CircleUserRound } from "lucide-react";
 import Link from "next/link";
 
@@ -15,7 +15,7 @@ const VolunteerLayout = ({
 
     return (
         <main className="grid grid-cols-6 h-screen" suppressHydrationWarning={true}>
-            <div className="col-span-1"><SideBar /></div>
+            <div className="col-span-1"><VolunteerSideBar /></div>
             <div className="col-span-5">
                 <div className="px-7 py-5 pl-12">
                     <div className="flex">
