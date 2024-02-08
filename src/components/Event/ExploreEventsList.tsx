@@ -12,8 +12,23 @@ async function findOrganisation(id: number): string {
     return orgName.name;
 }
 
-const ExploreEventsList = async () => {
-    const events = await prisma.event.findMany();
+export type event = {
+    id: number;
+    organisationId: number;
+    name: string;
+    location: string;
+    maxVolunteers: number;
+    startDate: Date;
+    endDate: Date;
+}
+
+
+export type eventListProps = {
+    events: event[]
+}
+
+const ExploreEventsList = async ({ events } :eventListProps) => {
+
     return (
         <div>
             {events.map(e =>
@@ -21,8 +36,8 @@ const ExploreEventsList = async () => {
                     id={e.id}
                     name={e.name}
                     location={e.location}
-                    start={e.start}
-                    end={e.end}
+                    start={e.startDate}
+                    end={e.endDate}
                     organisation={findOrganisation(e.organisationId)} />
             )}
         </div >

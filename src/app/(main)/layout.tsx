@@ -1,22 +1,23 @@
-import { cookies } from 'next/headers'
-import { redirectLogin } from '@/lib/actions';
-import { UserType } from '@/components/Auth/User';
+import { UserType } from "@/components/Auth/User";
+import { cookies } from "next/headers";
 
-const MainLayout = ({
+const MainLayout = async ({
     organisation,
     volunteer
 }: Readonly<{
     organisation: React.ReactNode;
     volunteer: React.ReactNode;
 }>) => {
-    let cookie = cookies().get("user-data");
     let user;
-    if (!cookie) redirectLogin();
-    else user = JSON.parse(cookie.value)
-
-    return (
-        <>{user?.type == UserType.VOLUNTEER ? volunteer : organisation}</>
-    );
+    const userCookie = cookies().get("user-data");
+    if (userCookie && userCookie.value) {
+        user = JSON.parse(userCookie.value);
+        return (
+            <>{user!.type == UserType.VOLUNTEER ? volunteer : organisation}</>
+        );
+    } 
+    return <></> 
+    
 };
 
 export default MainLayout;
