@@ -1,10 +1,11 @@
 import InboxNotification from "@/components/Inbox/InboxNotification";
 import prisma from '../../../../lib/prisma'
+import { getUser } from "@/components/Auth/User";
 
 const InboxPage = async () => {
     const inbox = await prisma.inboxNotification.findMany({
         where: {
-            userId: 10
+            userId: getUser().userId
         }
     });
     return (

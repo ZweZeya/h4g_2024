@@ -32,3 +32,22 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
     }
 }
+
+export async function PATCH(request: NextRequest) {
+    try {
+        const requestBody = await request.json();
+        const { id, status } = requestBody;
+        const enroll: Prisma.EnrollmentUpdateInput = {
+            status: status
+        };
+        const updateEvent = await prisma.enrollment.update({
+            where: {
+                id: id
+            },
+            data: enroll
+        });
+        return NextResponse.json(updateEvent, { status: 201 });
+    } catch (error) {
+        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
+    }
+}

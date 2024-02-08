@@ -18,6 +18,7 @@ async function findVolunteer(data: any) {
         })
         const userInfo = {
             id: user.id,
+            userId: user.userId,
             type: UserType.VOLUNTEER
         }
         return userInfo;
@@ -33,10 +34,11 @@ async function findOrganisation(data: any) {
                     email: data.email,
                     hashPassword: data.password
                 }
-            }
+            },
         })
         const userInfo = {
             id: user.id,
+            userId: user.userId,
             type: UserType.ORGANISATION
         }
         return userInfo;
@@ -56,6 +58,7 @@ async function findAdmin(data: any) {
         })
         const userInfo = {
             id: user.id,
+            userId: user.userId,
             type: UserType.ADMIN
         }
         return userInfo;
