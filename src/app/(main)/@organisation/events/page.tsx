@@ -3,11 +3,20 @@ import OrganisationEventCard from '@/components/Event/OrganisationEventCard';
 import prisma from './../../../../lib/prisma'
 
 const EventsPage = async () => {
+    // const events = await prisma.event.findMany({
+    //     where: {
+    //         organisationId: 1 // TBC
+    //     }
+    // });
+
     const events = await prisma.event.findMany({
         where: {
-            organisationId: 1 // TBC
-        }
-    });
+            organisationId: 1 // TBC        
+        },
+    })
+
+    // const events = await prisma.event.findMany();
+
     return (
         <div>
             {events.map(e =>
