@@ -1,7 +1,25 @@
-import { EventCardProps } from "../Event/ExploreEventCard";
-import { Button } from "@/components/ui/button";
+import { EventCardProps } from "../Event/ExploreEventCard"
+import { Button } from "@/components/ui/button"
+import { EnrollmentStatus } from "@prisma/client"
+import prisma from '../../lib/prisma'
+import { getUser } from "../Auth/User"
+
+async function checkStatus(eventId: number, volunteerId: number): EnrollmentStatus {
+    try {
+        const enrollment = await prisma.enrollment.findFirstOrThrow({
+            where: {
+                volunteerId: volunteerId,
+                eventId: eventId
+            }
+        })
+        return enrollment.status;
+    } catch (error) {
+        return EnrollmentStatus.NONE;
+    }
+}
 
 const SmallEvents = ({ event }: { event: EventCardProps }) => {
+    const status = checkStatus(event.id, getUser().id)
     const startDateArr: string[] = event.start.toDateString().split(" ");
     const month = startDateArr[1];
     const date = startDateArr[2];

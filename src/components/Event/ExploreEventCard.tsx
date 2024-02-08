@@ -2,7 +2,7 @@ import { useState } from "react";
 import prisma from '../../lib/prisma'
 import { EnrollmentStatus, Prisma } from '@prisma/client';
 import { Button } from "../ui/button";
-import { Badge } from "../ui/badge";
+import { getUser } from "../Auth/User";
 
 
 export type EventCardProps = {
@@ -12,7 +12,6 @@ export type EventCardProps = {
     organisation: string,
     start: Date,
     end: Date
-
 }
 
 async function checkStatus(eventId: number, volunteerId: number): EnrollmentStatus {
@@ -30,7 +29,7 @@ async function checkStatus(eventId: number, volunteerId: number): EnrollmentStat
 }
 
 const ExploreEventCard = async ({ id, name, location, organisation }: EventCardProps) => {
-    const enroll_status: EnrollmentStatus = await checkStatus(id, 1);
+    const enroll_status: EnrollmentStatus = await checkStatus(id, getUser().id);
     console.log(name + " " + enroll_status);
     return (
         <div className="max-w-sm rounded overflow-hidden shadow-lg">
@@ -45,25 +44,23 @@ const ExploreEventCard = async ({ id, name, location, organisation }: EventCardP
 
             </div>
 
-
             <div className="px-6 pt-4 pb-2">
                 {enroll_status &&
                     enroll_status === EnrollmentStatus.NONE &&
-                    <Button variant="mine">Enroll</Button>
+                    <Button>Enroll</Button>
                 }
                 {enroll_status &&
                     enroll_status === EnrollmentStatus.PENDING &&
-                    <Badge variant="pending">Pending</Badge>
+                    <Button>Enroll</Button>
                 }
                 {enroll_status &&
                     enroll_status === EnrollmentStatus.ASSIGNED &&
-                    <Badge variant="assigned">Assigned</Badge>
+                    <Button>Enroll</Button>
                 }
             </div>
 
         </div>
     );
-
 };
 
 export default ExploreEventCard

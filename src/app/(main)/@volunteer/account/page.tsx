@@ -13,29 +13,29 @@ const AccountPage = () => {
                     <p className="font-sans font-bold text-3xl">Mei Yang</p>
                     <br></br>
                     <div className="grid grid-cols-3 gap-7">
-                    <div>
-                    <p className="font-sans font-bold text-lg">Bio</p>
-                    <p>Age: 26</p>
-                    <p>Nationality: Singaporean</p>
-                    <p>Availability: Weekends</p>
-                    </div>
-                  
-                    <div>
-                    <p className="font-sans font-bold text-lg">Volunteering Hours:</p>
-                    <p className="font-bold">70</p>
-                    </div>
+                        <div>
+                            <p className="font-sans font-bold text-lg">Bio</p>
+                            <p>Age: 26</p>
+                            <p>Nationality: Singaporean</p>
+                            <p>Availability: Weekends</p>
+                        </div>
 
-                    <div>
-                        <Button variant="mine">Edit Profile</Button>
+                        <div>
+                            <p className="font-sans font-bold text-lg">Volunteering Hours:</p>
+                            <p className="font-bold">70</p>
+                        </div>
+
+                        <div>
+                            <Button variant="mine">Edit Profile</Button>
+                        </div>
+
                     </div>
-                
-                </div>
-                <div className="col-span-1">
-                </div>
+                    <div className="col-span-1">
+                    </div>
                 </div>
             </div>
             <hr />
-            <div className="grid grid-cols-2 gap-5 px-15 py-2">
+            <div className="grid grid-cols-2 gap-5 px-15 pt-6 pb-2 ">
                 <div className="max-w-md rounded overflow-hidden shadow-xl">
                     <div className="px-6 py-4">
                         <p className="font-sans font-bold text-base">Phone</p>
@@ -74,22 +74,22 @@ const AccountPage = () => {
                         <Badge variant="pending">Arts</Badge>
                         <Badge variant="pending">Sports</Badge>
                         <Badge variant="pending">Children</Badge>
-                        </div>
                     </div>
                 </div>
-            
-                <div className="grid grid-cols-2 gap-20 px-15 py-4">
+            </div>
+
+            <div className="grid grid-cols-2 gap-20 px-15 py-4">
                 <div className="px-6 py-4">
                     <p className="font-sans font-bold text-base">Past Volunteering Experiences</p>
                     <p>Volunteered weekly at Children's Home (1 Dec - Ongoing) </p>
                     <p> - Conducted workshops for children </p>
                     <p> - Took photographs and uploaded marketing content  </p>
-                   
+
                 </div>
 
-              <div></div>
-            
-            </div>    
+                <div></div>
+
+            </div>
         </>
 
     );
