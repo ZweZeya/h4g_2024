@@ -1,8 +1,11 @@
 import React from 'react'
+import ColumnChart from '@/components/Metrics/ColumnChart'
 
 const ViewMetricsPage = () => {
     return (
-        <div>View Metrics Page</div>
+        <div>
+            <ColumnChart></ColumnChart>
+        </div>
     )
 }
 
