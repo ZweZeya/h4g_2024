@@ -13,7 +13,7 @@ const LoginPage = () => {
                 <LoginForm />
             </div>
             {/* <div className="grid grid=rows-2 gap-5 mt-10 w-20 items-center">
-                <Link href='/signup/volunteer'>
+                <Link href='/volunteer'>
                     <Button className="bg-[#a886e7]" type="button">Sign Up As Volunteer</Button>
                 </Link>
 
