@@ -19,24 +19,24 @@ const EventsPage = async ({
     // });
 
     const query = searchParams?.query || '';
-    const events = await prisma.event.findMany({
+    const events = query == '' ? (await prisma.event.findMany()) : (await prisma.event.findMany({
         where: {
             OR: [
                 {
                     name: {
-                        search: query
+                        search: query.replace(/[\s\n\t]/g, '_')
                     },
                 },
                 {
                     organisation: {
                         name: {
-                            search: query
+                            search: query.replace(/[\s\n\t]/g, '_')
                         }
                     }
                 }
             ]
         },
-    })
+    }))
 
     // const events = await prisma.event.findMany();
 

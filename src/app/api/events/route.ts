@@ -50,7 +50,7 @@ export async function PATCH(request: NextRequest) {
             },
             data: event
         });
-        return NextResponse.json(updateEvent, { status: 201 });
+        return NextResponse.json(updateEvent, { status: 200 });
     } catch (error) {
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
     }
@@ -65,7 +65,7 @@ export async function DELETE(request: NextRequest) {
                 id: eventId,
             },
         });
-        return NextResponse.json(deleteEvent, { status: 201 });
+        return NextResponse.json(deleteEvent, { status: 200 });
     } catch (error) {
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
     }
