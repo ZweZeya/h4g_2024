@@ -18,6 +18,5 @@ export function getUser(): User {
     let user;
     if (!cookie) redirectLogin();
     else user = JSON.parse(cookie.value)
-
     return user;
 }
