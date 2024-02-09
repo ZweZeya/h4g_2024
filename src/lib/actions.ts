@@ -2,7 +2,7 @@
 import prisma from "./prisma";
 import { UserType } from "@/components/Auth/User";
 import { cookies } from 'next/headers';
-import jwt from "jsonwebtoken";
+
 import { redirect } from 'next/navigation'
 import { use } from "react";
 
@@ -82,7 +82,7 @@ export async function authenticate(data: any) {
             case "volunteer":
                 user = await findVolunteer(data);
                 break;
-            case "admin":
+            case "adminstrator":
                 user = await findAdmin(data);
                 break;
             case "organisation":

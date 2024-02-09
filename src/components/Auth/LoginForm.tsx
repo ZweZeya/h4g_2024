@@ -15,7 +15,7 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue,
-  } from "@/components/ui/select"
+} from "@/components/ui/select"
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { authenticate, redirectHome } from "@/lib/actions";
@@ -27,7 +27,7 @@ const loginFormSchema = z.object({
     email: z.string().min(1),
     password: z.string().min(3),
     role: z.enum(["adminstrator", "organisation", "volunteer"]),
-  })
+})
 
 const LoginForm = () => {
     const login = userStore((state) => state.login);
@@ -51,7 +51,7 @@ const LoginForm = () => {
 
     return (
         <Form {...form}>
-            <form 
+            <form
                 onSubmit={form.handleSubmit(onSubmit)}
                 className="flex flex-col gap-3 w-2/6"
             >
@@ -84,19 +84,19 @@ const LoginForm = () => {
                     name="role"
                     render={({ field }) => (
                         <FormItem>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                            <SelectTrigger>
-                                <SelectValue placeholder="Role" />
-                            </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                                <SelectItem value="adminstrator">Adminstrator</SelectItem>
-                                <SelectItem value="organisation">Organisation</SelectItem>
-                                <SelectItem value="volunteer">Volunteer</SelectItem>
-                            </SelectContent>
-                        </Select>
-                        <FormMessage />
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                <FormControl>
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Role" />
+                                    </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                    <SelectItem value="adminstrator">Adminstrator</SelectItem>
+                                    <SelectItem value="organisation">Organisation</SelectItem>
+                                    <SelectItem value="volunteer">Volunteer</SelectItem>
+                                </SelectContent>
+                            </Select>
+                            <FormMessage />
                         </FormItem>
                     )}
                 />
