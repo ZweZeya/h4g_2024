@@ -62,8 +62,8 @@ model Event {
   name           String       @db.VarChar(100)
   location       String?
   maxVolunteers  Int
-  startDate      DateTime
   endDate        DateTime
+  startDate      DateTime
   enrollments    Enrollment[]
   organisation   Organisation @relation(fields: [organisationId], references: [id], onDelete: Cascade)
 
@@ -102,8 +102,8 @@ enum Availability {
 
 enum EnrollmentStatus {
   PENDING
-  REJECTED
   ASSIGNED
   COMPLETED
+  REJECTED
   NONE
 }

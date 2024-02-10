@@ -20,7 +20,7 @@ export type EventCardProps = {
     start: Date,
     end: Date
     id: number,
-    enroll_status: EnrollmentStatus,
+    enroll_status?: EnrollmentStatus,
 }
 
 const enrollFormSchema = z.object({});

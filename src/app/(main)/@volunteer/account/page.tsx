@@ -63,7 +63,7 @@ const AccountPage = () => {
                     <p className="font-sans font-bold text-base">Skills</p>
                     <p>Photography</p>
                     <p> Graphic Design </p>
-                    <p> Driver's license </p>
+                    <p>{`Driver's license`}</p>
                     <p> Photography </p>
                     <p> Has vehicle </p>
                 </div>
@@ -81,7 +81,7 @@ const AccountPage = () => {
             <div className="grid grid-cols-2 gap-20 px-15 py-4">
                 <div className="px-6 py-4">
                     <p className="font-sans font-bold text-base">Past Volunteering Experiences</p>
-                    <p>Volunteered weekly at Children's Home (1 Dec - Ongoing) </p>
+                    <p>{`Volunteered weekly at Children's Home (1 Dec - Ongoing) `}</p>
                     <p> - Conducted workshops for children </p>
                     <p> - Took photographs and uploaded marketing content  </p>
 

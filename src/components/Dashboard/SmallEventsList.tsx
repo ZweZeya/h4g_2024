@@ -3,7 +3,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 
 import prisma from '../../lib/prisma'
 
-async function findOrganisation(id: number): string {
+async function findOrganisation(id: number): Promise<string> {
     const orgName = await prisma.organisation.findUnique({
         where: {
             id: id
@@ -18,17 +18,18 @@ const SmallEventsList = async () => {
         <div>
             {/* <p className="font-medium">Upcoming Events</p> */}
             <ScrollArea className="h-32" style={{ height: 450 }}>
-                {events.map(e =>
+                {events.map(async (e: any) =>
                     <SmallEvents
                         key={e.id}
                         event={
                             {
+                                eventid: e.id,
                                 id: e.id,
                                 name: e.name,
                                 start: e.startDate,
                                 end: e.endDate,
                                 location: e.location,
-                                organisation: findOrganisation(e.organisationId)
+                                organisation: await findOrganisation(e.organisationId)
                             }
                         } />)}
 

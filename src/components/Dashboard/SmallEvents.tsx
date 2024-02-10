@@ -4,7 +4,7 @@ import { EnrollmentStatus } from "@prisma/client"
 import prisma from '../../lib/prisma'
 import { getUser } from "../Auth/User"
 
-async function checkStatus(eventId: number, volunteerId: number): EnrollmentStatus {
+async function checkStatus(eventId: number, volunteerId: number): Promise<EnrollmentStatus> {
     try {
         const enrollment = await prisma.enrollment.findFirstOrThrow({
             where: {

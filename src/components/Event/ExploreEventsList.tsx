@@ -14,7 +14,7 @@ async function findOrganisation(id: number): Promise<string> {
     return orgName.name;
 }
 
-async function checkStatus(eventId: number, volunteerId: number): EnrollmentStatus {
+async function checkStatus(eventId: number, volunteerId: number): Promise<EnrollmentStatus> {
     try {
         const enrollment = await prisma.enrollment.findFirstOrThrow({
             where: {
@@ -51,7 +51,7 @@ const ExploreEventsList = async ({ events } :eventListProps) => {
         <ScrollArea className='h-[calc(100vh-120px)]'>
             <div className="grid grid-cols-3 gap-x-6 gap-y-8">
                 {events.map(async (e, idx) => {
-                    const enroll_status: EnrollmentStatus = checkStatus(e.id, id);
+                    const enroll_status: EnrollmentStatus = await checkStatus(e.id, id);
                     return (
                         <ExploreEventCard
                             key={idx}
