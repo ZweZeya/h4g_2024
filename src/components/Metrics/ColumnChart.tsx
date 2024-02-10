@@ -14,7 +14,7 @@ const ColumnChart = ({ data, labels }: ChartProps) => {
         height: 480,
         series: [
             {
-                name: "Sales",
+                name: "Hours",
                 data: data,
             },
         ],
