@@ -1,3 +1,4 @@
+import React from 'react';
 import {
     LayoutGrid,
     Compass,
@@ -7,7 +8,7 @@ import {
     LogOut
 } from 'lucide-react';
 import SideBarItem from './SideBarItem';
-import { logout } from '@/lib/actions';
+import { logout } from '../../lib/actions';
 
 const OrganisationSideBar = () => {
 
