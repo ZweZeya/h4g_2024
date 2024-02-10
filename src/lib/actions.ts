@@ -101,6 +101,10 @@ export async function redirectHome() {
     redirect('/');
 }
 
+export async function redirectExplore() {
+    redirect('/explore');
+}
+
 export async function redirectViewEnrollment(eventId: string) {
     const urlString: string = '/events/' +  eventId;
     redirect(urlString);

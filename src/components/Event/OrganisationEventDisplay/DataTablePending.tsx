@@ -23,6 +23,7 @@ interface DataTableProps<TData, TValue> {
   data: TData[]
 }
 
+
 export function DataTablePending<TData, TValue>({
   columns,
   data,
@@ -85,9 +86,7 @@ export function DataTablePending<TData, TValue>({
           )}
         </TableBody>
       </Table>
-      <div>
-        {table.getFilteredSelectedRowModel().rows[0]}row(s) selected.
-      </div>
+      
     </div>
   )
 }

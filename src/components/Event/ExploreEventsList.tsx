@@ -62,6 +62,7 @@ const ExploreEventsList = async ({ events } :eventListProps) => {
                             organisation={await findOrganisation(e.organisationId)}
                             id={id}
                             enroll_status={enroll_status}
+                            eventid={e.id}
                         />
                     )}
                 )}
