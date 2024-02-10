@@ -78,9 +78,7 @@ const config = {
       },
     },
   },
-  plugins: [require('flowbite/plugin')({
-    charts: true,
-  }), require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate")],
 } satisfies Config
 
 export default config
