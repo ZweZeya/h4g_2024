@@ -1,6 +1,4 @@
-import Header from '@/components/Layout/Header';
 
-import ExploreEventCard from './../../../../components/Event/ExploreEventCard'
 import ExploreEventsList from '@/components/Event/ExploreEventsList';
 import SearchEvent from '@/components/Event/SearchEvent';
 import prisma from './../../../../lib/prisma'
@@ -41,9 +39,9 @@ const EventsPage = async ({
     // const events = await prisma.event.findMany();
 
     return (
-        <div>
-            <SearchEvent />
-            <ExploreEventsList events={events}/>
+        <div className='h-[calc(100vh-64px)] overflow-hidden'>
+                <SearchEvent />
+                <ExploreEventsList events={events}/> 
         </div>
     )
 };

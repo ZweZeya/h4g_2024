@@ -101,6 +101,11 @@ export async function redirectHome() {
     redirect('/');
 }
 
+export async function redirectViewEnrollment(eventId: string) {
+    const urlString: string = '/events/' +  eventId;
+    redirect(urlString);
+}
+
 export async function logout() {
     cookies().delete("user-data");
     redirect("/login");

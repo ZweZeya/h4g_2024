@@ -12,7 +12,7 @@ import { logout } from '@/lib/actions';
 const OrganisationSideBar = () => {
 
     return (
-        <div className="bg-[#F5F1E6] h-full flex flex-col gap-4 pt-20">
+        <div className="bg-[#F5F1E6] h-screen flex flex-col gap-4 pt-20">
             <SideBarItem icon={<LayoutGrid />} label="Dashboard" route="/" />
             <SideBarItem icon={<CalendarDays />} label="Events" route="/events" />
             <SideBarItem icon={<Mail />} label="Inbox" route="/inbox" />

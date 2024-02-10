@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import ViewEnrollmentButton from './ViewEnrollmentButton'
 
 type OrganisationEventCardProps = {
     id: string,
@@ -29,6 +30,7 @@ const OrganisationEventCard = ({ id, name, location, start, end, maxVolunteers }
                     </p>
                 </div>
             </div>
+            <ViewEnrollmentButton id={id}/>
         </div>
     )
 }
