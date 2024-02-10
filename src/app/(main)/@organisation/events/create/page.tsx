@@ -7,7 +7,7 @@ const EventsCreationPage = () => {
     return (
         <div>
             <Header>Create Event</Header>
-            <CreateEventForm organisationId={getUser().id} />
+            <CreateEventForm organisationId={getUser()!.id} />
         </div>
     );
 };

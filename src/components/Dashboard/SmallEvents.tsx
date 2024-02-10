@@ -19,7 +19,7 @@ async function checkStatus(eventId: number, volunteerId: number): EnrollmentStat
 }
 
 const SmallEvents = ({ event }: { event: EventCardProps }) => {
-    const status = checkStatus(event.id, getUser().id)
+    const status = checkStatus(event.id, getUser()!.id)
     const startDateArr: string[] = event.start.toDateString().split(" ");
     const month = startDateArr[1];
     const date = startDateArr[2];
