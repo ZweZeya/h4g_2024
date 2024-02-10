@@ -5,6 +5,7 @@ import prisma from '../../lib/prisma'
 import { getUser } from "../Auth/User"
 import { UserType } from "../Auth/User"
 import Link from "next/link"
+import { redirect } from 'next/navigation'
 
 async function checkStatus(eventId: number, volunteerId: number): Promise<EnrollmentStatus> {
     try {
@@ -41,9 +42,9 @@ const SmallEvents = ({ event }: { event: EventCardProps }) => {
                         ?
                         <Button variant="mine">Enroll</Button>
                         :
-                        <Link href='/events/edit/${event.id}'>
-                            <Button variant="mine">Edit</Button>
-                        </Link>
+
+                        <Button variant="mine" onClick={redirect('/events/edit/' + event.id.toString())}>Edit</Button>
+
 
                     }
                 </div>

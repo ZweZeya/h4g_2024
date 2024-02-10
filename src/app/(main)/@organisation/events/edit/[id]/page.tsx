@@ -2,7 +2,6 @@ import EditEventForm from "@/components/Event/EditEventForm";
 import Header from "@/components/Layout/Header";
 import { getUser } from "@/components/Auth/User";
 import prisma from "@/lib/prisma";
-import { useRouter } from 'next/router'
 
 
 const EventsEditPage = async ({ params }: { params: { id: string } }) => {

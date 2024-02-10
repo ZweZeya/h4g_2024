@@ -23,6 +23,7 @@ import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { Image as ImageIcon } from 'lucide-react';
 import { Event } from "@prisma/client";
+import Link from "next/link";
 
 
 const editEventFormSchema = z.object({
@@ -48,7 +49,7 @@ const EditEventForm = ({ organisationId, event }: { organisationId: number, even
             location: event.location,
             // type: "",
             description: event.description,
-            maxVolunteers: event.maxVolunteers,
+            maxVolunteers: event.maxVolunteers.toString(),
             organisationId: event.organisationId,
         },
     });
@@ -217,7 +218,14 @@ const EditEventForm = ({ organisationId, event }: { organisationId: number, even
                         </FormItem>
                     )}
                 />
-                <Button type="submit">Save</Button>
+                <div className="flex gap-2">
+                    <Link href='/'>
+                        <Button>Back</Button>
+                    </Link>
+
+                    <Button type="submit">Save</Button>
+                </div>
+
             </form>
         </Form>
     );
