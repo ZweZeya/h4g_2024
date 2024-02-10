@@ -19,11 +19,9 @@ type EnrollmentAcceptedListProps = {
 const EnrollmentAcceptedList = ({ volunteers }: EnrollmentAcceptedListProps) => {
     return (
         <div>
-            {volunteers.map(v => {
+            {volunteers.map((v, idx) => {
                 return (
-                    <div>
-                        <EnrollmentStatus name={v.volunteer.name} mobileNumber={v.volunteer.mobileNumber} availability={v.volunteer.availability}/>
-                    </div>
+                    <EnrollmentStatus key={idx} name={v.volunteer.name} mobileNumber={v.volunteer.mobileNumber} availability={v.volunteer.availability}/>
                 )
             })}
         </div>

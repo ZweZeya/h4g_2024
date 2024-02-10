@@ -5,7 +5,7 @@ import prisma from '../../lib/prisma'
 import { getUser } from "../Auth/User"
 import { UserType } from "../Auth/User"
 
-async function checkStatus(eventId: number, volunteerId: number): EnrollmentStatus {
+async function checkStatus(eventId: number, volunteerId: number): Promise<EnrollmentStatus> {
     try {
         const enrollment = await prisma.enrollment.findFirstOrThrow({
             where: {
@@ -20,7 +20,7 @@ async function checkStatus(eventId: number, volunteerId: number): EnrollmentStat
 }
 
 const SmallEvents = ({ event }: { event: EventCardProps }) => {
-    const status = checkStatus(event.id, getUser().id)
+    const status = checkStatus(event.id, getUser()!.id)
     const startDateArr: string[] = event.start.toDateString().split(" ");
     const month = startDateArr[1];
     const date = startDateArr[2];

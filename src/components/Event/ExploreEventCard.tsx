@@ -11,8 +11,8 @@ export type EventCardProps = {
     location: string,
     organisation: string,
     start: Date,
-    end: Date
-
+    end: Date,
+    enroll_status?: EnrollmentStatus,
 }
 
 async function checkStatus(eventId: number, volunteerId: number): Promise<EnrollmentStatus> {

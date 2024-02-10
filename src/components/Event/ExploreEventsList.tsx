@@ -5,7 +5,7 @@ import { getUser } from '../Auth/User'
 import { EnrollmentStatus } from '@prisma/client'
 import { ScrollArea } from '@/components/ui/scroll-area';
 
-async function findOrganisation(id: number): string {
+async function findOrganisation(id: number): Promise<string> {
     const orgName = await prisma.organisation.findUnique({
         where: {
             id: id
@@ -14,7 +14,7 @@ async function findOrganisation(id: number): string {
     return orgName.name;
 }
 
-async function checkStatus(eventId: number, volunteerId: number): EnrollmentStatus {
+async function checkStatus(eventId: number, volunteerId: number): Promise<EnrollmentStatus> {
     try {
         const enrollment = await prisma.enrollment.findFirstOrThrow({
             where: {
@@ -45,26 +45,26 @@ export type eventListProps = {
 
 const ExploreEventsList = async ({ events } :eventListProps) => {
     const user = getUser()
-    const id = user.id
+    const id = user!.id
     // const viewer = user!.type == UserType.VOLUNTEER ? "volunteer" : "organisation"
     return (
         <ScrollArea className='h-[calc(100vh-120px)]'>
             <div className="grid grid-cols-3 gap-x-6 gap-y-8">
-                {events.map(async e => {
+                {events.map(async (e, idx) => {
                     const enroll_status: EnrollmentStatus = await checkStatus(e.id, id);
                     return (
-                    <div>
                         <ExploreEventCard
-                        eventid={e.id}
-                        name={e.name}
-                        location={e.location}
-                        start={e.startDate}
-                        end={e.endDate}
-                        organisation={findOrganisation(e.organisationId)}
-                        id={id}
-                        enroll_status={enroll_status}
+                            key={idx}
+                            eventid={e.id}
+                            name={e.name}
+                            location={e.location}
+                            start={e.startDate}
+                            end={e.endDate}
+                            organisation={await findOrganisation(e.organisationId)}
+                            id={id}
+                            enroll_status={enroll_status}
                         />
-                    </div>)}
+                    )}
                 )}
             </div >
         </ScrollArea>

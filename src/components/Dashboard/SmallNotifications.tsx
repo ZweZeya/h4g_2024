@@ -9,8 +9,8 @@ const SmallNotifications = async () => {
     });
     return (
         <div>
-            {inbox && inbox.map(i =>
-                <InboxNotification>{i.message}</InboxNotification>
+            {inbox && inbox.map((i: any, idx: number) =>
+                <InboxNotification key={idx}>{i.message}</InboxNotification>
             )}
         </div>
     );
