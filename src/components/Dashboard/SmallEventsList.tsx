@@ -23,7 +23,6 @@ const SmallEventsList = async () => {
                         key={e.id}
                         event={
                             {
-                                eventid: e.id,
                                 id: e.id,
                                 name: e.name,
                                 start: e.startDate,

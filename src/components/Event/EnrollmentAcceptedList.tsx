@@ -1,17 +1,16 @@
-import EnrollmentStatus from "./EnrollmentStatus";
+// import EnrollmentStatus from "./EnrollmentStatus";
+import { EnrollmentStatus } from "@prisma/client";
 
-export type volunteer = {
+export type VolunteerEnrollment = {
     id: number;
-    userId: number;
     name: string;
     mobileNumber: number;
-    bday: Date;
-    address: string;
     availability: string;
+    enroll_status: string;
 }
 
 type EnrollmentAcceptedListProps = {
-    volunteers: { volunteer: volunteer }[];
+    volunteers: VolunteerEnrollment[];
 }
 
 
@@ -21,7 +20,9 @@ const EnrollmentAcceptedList = ({ volunteers }: EnrollmentAcceptedListProps) => 
         <div>
             {volunteers.map((v, idx) => {
                 return (
-                    <EnrollmentStatus key={idx} name={v.volunteer.name} mobileNumber={v.volunteer.mobileNumber} availability={v.volunteer.availability}/>
+                    <div>
+                        
+                    </div>
                 )
             })}
         </div>

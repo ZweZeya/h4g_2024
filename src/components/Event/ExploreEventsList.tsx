@@ -55,7 +55,6 @@ const ExploreEventsList = async ({ events } :eventListProps) => {
                     return (
                         <ExploreEventCard
                             key={idx}
-                            eventid={e.id}
                             name={e.name}
                             location={e.location}
                             start={e.startDate}
