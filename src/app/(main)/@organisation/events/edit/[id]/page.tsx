@@ -5,11 +5,11 @@ import prisma from "@/lib/prisma";
 import { useRouter } from 'next/router'
 
 
-const EventsEditPage = async () => {
-    const id = useRouter().query.id;
+const EventsEditPage = async ({ params }: { params: { id: string } }) => {
+    const id = Number(params.id);
     const event = await prisma.event.findUnique({
         where: {
-            id: Number(id)
+            id: id
         }
     })
     return (
