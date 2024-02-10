@@ -35,7 +35,11 @@ const SmallEvents = ({ event }: { event: EventCardProps }) => {
                     <p>{date} {month}</p>
                 </div>
                 <div className="col-span-1 flex-row justify-end">
-                    <Button variant="mine">Enroll</Button>
+                    if (getUser().type == UserType.VOLUNTEER) {
+                        <Button variant="mine">Enroll</Button>
+                    } else {
+                        <Button variant="mine">Edit</Button>
+                    }
                 </div>
             </div>
         </div>
