@@ -37,6 +37,7 @@ model Volunteer {
   mobileNumber String
   bday         DateTime
   address      String?       @db.VarChar(255)
+  hours        Float         @default(0)
   availability Availability
   certificates Certificate[]
   enrollments  Enrollment[]
