@@ -6,6 +6,7 @@ const sampleJSON = {
     "location": "Serangoon 17171",
     "maxVolunteers": 20,
     "name": "Charity Event 1",
+    "description": "",
     "organisationId": 1,
     "startDate": "2024-01-02T17:29:49.023Z",
     "endDate": "2024-01-05T17:29:49.023Z"
@@ -14,11 +15,12 @@ const sampleJSON = {
 export async function POST(request: NextRequest) {
     try {
         const requestBody = await request.json();
-        const { organisationId, name, location, maxVolunteers, startDate, endDate } = requestBody;
+        const { organisationId, name, description, location, maxVolunteers, startDate, endDate } = requestBody;
         const event: Prisma.EventCreateInput = {
             organisation: { connect: { id: organisationId } },
             location: location,
             name: name,
+            description: description,
             maxVolunteers: maxVolunteers,
             startDate: startDate,
             endDate: endDate
@@ -37,10 +39,11 @@ export async function POST(request: NextRequest) {
 export async function PATCH(request: NextRequest) {
     try {
         const requestBody = await request.json();
-        const { organisation, name, location, maxVolunteers, eventId } = requestBody;
+        const { organisation, name, description, location, maxVolunteers, eventId } = requestBody;
         const event: Prisma.EventUpdateInput = {
             organisation: organisation,
             name: name,
+            description: description,
             location: location,
             maxVolunteers: maxVolunteers
         };

@@ -61,6 +61,7 @@ model Event {
   id             Int          @id @default(autoincrement())
   organisationId Int
   name           String       @db.VarChar(100)
+  description    String       @default("")
   location       String?
   maxVolunteers  Int
   endDate        DateTime
