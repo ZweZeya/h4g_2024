@@ -27,6 +27,11 @@ const SmallEvents = ({ event }: { event: EventCardProps }) => {
     const month = startDateArr[1];
     const date = startDateArr[2];
 
+    const onClick = async () => {
+        "use server"
+        redirect('/events/edit/' + event.id.toString());
+    }
+
     return (
         <div className={"border border-[#e8e8e8] border-l-8 rounded-md my-4 px-2 py-3 gap-32"}>
             <div className="grid grid-cols-4 flex-row gap-40 items-center">
@@ -43,9 +48,7 @@ const SmallEvents = ({ event }: { event: EventCardProps }) => {
                         <Button variant="mine">Enroll</Button>
                         :
 
-                        <Button variant="mine" onClick={redirect('/events/edit/' + event.id.toString())}>Edit</Button>
-
-
+                        <Button variant="mine" onClick={onClick}>Edit</Button>
                     }
                 </div>
             </div>

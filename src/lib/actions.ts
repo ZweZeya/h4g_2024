@@ -106,7 +106,7 @@ export async function redirectExplore() {
 }
 
 export async function redirectViewEnrollment(eventId: string) {
-    const urlString: string = '/events/' +  eventId;
+    const urlString: string = '/events/view/' +  eventId;
     redirect(urlString);
 }
 

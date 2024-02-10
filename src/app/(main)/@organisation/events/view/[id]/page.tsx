@@ -1,10 +1,10 @@
-import prisma from './../../../../../lib/prisma'
-import EnrollmentAcceptedList from '../../../../../components/Event/EnrollmentAcceptedList'
-import { VolunteerEnrollment } from '../../../../../components/Event/EnrollmentAcceptedList';
-import { PendingColumns } from '../../../../../components/Event/OrganisationEventDisplay/PendingColumns';
+import prisma from '../../../../../../lib/prisma'
+import EnrollmentAcceptedList from '../../../../../../components/Event/EnrollmentAcceptedList'
+import { VolunteerEnrollment } from '../../../../../../components/Event/EnrollmentAcceptedList';
+import { PendingColumns } from '../../../../../../components/Event/OrganisationEventDisplay/PendingColumns';
 import { EnrolledColumns } from '@/components/Event/OrganisationEventDisplay/EnrolledColumns';
-import { DataTableCompleted } from '../../../../../components/Event/OrganisationEventDisplay/DataTableCompleted';
-import { DataTablePending } from '../../../../../components/Event/OrganisationEventDisplay/DataTablePending'
+import { DataTableCompleted } from '../../../../../../components/Event/OrganisationEventDisplay/DataTableCompleted';
+import { DataTablePending } from '../../../../../../components/Event/OrganisationEventDisplay/DataTablePending'
 
 const EventEnrollmentPage = async ({ params }: { params: { id: string } }) => {
     const getEnrolledVolunteers = await prisma.enrollment.findMany({
@@ -44,7 +44,7 @@ const EventEnrollmentPage = async ({ params }: { params: { id: string } }) => {
             select: {
                 id: true,
                 name: true,
-                mobileNumber: true,
+                mobileNumber: true, 
                 availability: true
             }
           },
@@ -52,7 +52,7 @@ const EventEnrollmentPage = async ({ params }: { params: { id: string } }) => {
         }
     });
 
-    const enrolledVolunteers = getEnrolledVolunteers.map(v => {
+    const enrolledVolunteers = getEnrolledVolunteers.map((v: any) => {
         const volunteer: VolunteerEnrollment = {
             id: v.volunteer.id,
             name: v.volunteer.name,
@@ -63,7 +63,7 @@ const EventEnrollmentPage = async ({ params }: { params: { id: string } }) => {
         return volunteer;
     })
 
-    const pendingVolunteers = getPendingVolunteers.map(v => {
+    const pendingVolunteers = getPendingVolunteers.map((v: any) => {
         const volunteer: VolunteerEnrollment = {
             id: v.volunteer.id,
             name: v.volunteer.name,
