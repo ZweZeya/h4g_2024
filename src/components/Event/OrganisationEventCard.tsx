@@ -14,10 +14,16 @@ const OrganisationEventCard = ({ id, name, location, start, end, maxVolunteers }
     const startDateArr: string[] = new Date(start).toDateString().split(" ");
     const month = startDateArr[1];
     const date = startDateArr[2];
+    const imgUrl = `/volunteer-pic-${(parseInt(id) % 4).toString()}.jpg`;
 
     return (
         <div className="max-w-sm rounded-2xl overflow-hidden shadow-lg">
-            <div className={`bg-[url('/volunteer-pic-${parseInt(id) % 4}.jpg')] h-48`}></div>
+            <div 
+                className="h-52"
+                style={{
+                    backgroundImage: `url(${imgUrl})`,
+                }}
+            ></div>
             <div className="flex gap-4 items-center px-6 py-3">
                 <div className="flex flex-col gap-1 items-center">
                     <p className="text-[#35B2DE]">{month}</p>

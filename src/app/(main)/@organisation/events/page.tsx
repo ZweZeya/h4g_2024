@@ -1,7 +1,9 @@
 import Header from '@/components/Layout/Header';
 import OrganisationEventCard from '@/components/Event/OrganisationEventCard';
-import prisma from './../../../../lib/prisma'
-import { ScrollArea } from "@/components/ui/scroll-area"
+import prisma from './../../../../lib/prisma';
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { PlusCircle } from 'lucide-react';
+import Link from 'next/link';
 
 
 const EventsPage = async () => {
@@ -9,7 +11,12 @@ const EventsPage = async () => {
 
     return (
         <div className="flex flex-col gap-5 h-[calc(100vh-64px)]">
-            <Header>Upcoming Events</Header>
+            <div className="flex gap-5 items-center">
+                <Header>Upcoming Events</Header>
+                <Link href="/events/create" className="hover:text-[#35B2DE]">
+                    <PlusCircle />
+                </Link>
+            </div>
             <ScrollArea className="h-svh">
                 <div className="grid grid-cols-3 gap-6">
                     {events.map((e: any) =>
