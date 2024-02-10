@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { EnrollmentStatus } from "@prisma/client"
 import prisma from '../../lib/prisma'
 import { getUser } from "../Auth/User"
+import { UserType } from "../Auth/User"
 
 async function checkStatus(eventId: number, volunteerId: number): EnrollmentStatus {
     try {
@@ -35,11 +36,12 @@ const SmallEvents = ({ event }: { event: EventCardProps }) => {
                     <p>{date} {month}</p>
                 </div>
                 <div className="col-span-1 flex-row justify-end">
-                    if (getUser().type == UserType.VOLUNTEER) {
-                        <Button variant="mine">Enroll</Button>
-                    } else {
+                    { (getUser().type == UserType.VOLUNTEER) 
+                        ?
+                        <Button variant="mine">Enroll</Button> 
+                        :
                         <Button variant="mine">Edit</Button>
-                    }
+                    } 
                 </div>
             </div>
         </div>

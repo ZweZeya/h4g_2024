@@ -18,7 +18,7 @@ const OrganisationHomePage = async () => {
     });
     return (
         <div>
-            <Header>Welcome to BAHfamily</Header>
+            <Header>Organisation Home Page</Header>
             <div className="grid grid-cols-3 gap-14">
                 <div className="col-span-2">
                     <div className="flex items-center">
