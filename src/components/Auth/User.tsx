@@ -1,5 +1,4 @@
 import { cookies } from 'next/headers'
-import { redirectLogin } from '@/lib/actions';
 
 export enum UserType {
     VOLUNTEER,
@@ -13,10 +12,10 @@ export type User = {
     type: UserType
 }
 
-export function getUser(): User {
+export function getUser(): User | null {
     let cookie = cookies().get("user-data");
     let user;
-    if (!cookie) redirectLogin();
+    if (!cookie) return null;
     else user = JSON.parse(cookie.value)
     return user;
 }
