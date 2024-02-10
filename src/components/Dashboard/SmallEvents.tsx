@@ -4,6 +4,7 @@ import { EnrollmentStatus } from "@prisma/client"
 import prisma from '../../lib/prisma'
 import { getUser } from "../Auth/User"
 import { UserType } from "../Auth/User"
+import Link from "next/link"
 
 async function checkStatus(eventId: number, volunteerId: number): Promise<EnrollmentStatus> {
     try {
@@ -36,12 +37,15 @@ const SmallEvents = ({ event }: { event: EventCardProps }) => {
                     <p>{date} {month}</p>
                 </div>
                 <div className="col-span-1 flex-row justify-end">
-                    { (getUser().type == UserType.VOLUNTEER) 
+                    {(getUser()?.type == UserType.VOLUNTEER)
                         ?
-                        <Button variant="mine">Enroll</Button> 
+                        <Button variant="mine">Enroll</Button>
                         :
-                        <Button variant="mine">Edit</Button>
-                    } 
+                        <Link href='/events/edit/${event.id}'>
+                            <Button variant="mine">Edit</Button>
+                        </Link>
+
+                    }
                 </div>
             </div>
         </div>
