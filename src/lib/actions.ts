@@ -101,7 +101,23 @@ export async function redirectHome() {
     redirect('/');
 }
 
+export async function redirectViewEnrollment(eventId: string) {
+    const urlString: string = '/events/' +  eventId;
+    redirect(urlString);
+}
+
 export async function logout() {
     cookies().delete("user-data");
     redirect("/login");
+}
+
+export async function createEvent(data: any) {
+    await fetch("http://localhost:3000/api/events", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    })
+    redirect("/events");
 }

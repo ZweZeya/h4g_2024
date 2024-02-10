@@ -8,7 +8,7 @@ const EventsPage = async () => {
     const events = await prisma.event.findMany();
 
     return (
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-5 h-[calc(100vh-64px)]">
             <Header>Upcoming Events</Header>
             <ScrollArea className="h-svh">
                 <div className="grid grid-cols-3 gap-6">

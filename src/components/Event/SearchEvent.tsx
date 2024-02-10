@@ -48,7 +48,7 @@ const SearchEvent = () => {
     }
     return (
 
-        <div className='mt-2'>
+        <div className='mt-2 m-4'>
             <Form {...form}>
                 <form
                     onSubmit={form.handleSubmit(onSubmit)}

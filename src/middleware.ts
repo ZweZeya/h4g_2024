@@ -10,15 +10,16 @@ const r = [
     "/_next/static/chunks/app/(auth)/login/page.js",
 ]
 export function middleware(request: NextRequest) {
-    if (r.includes(request.nextUrl.pathname)) return NextResponse.next();
+    const path = request.nextUrl.pathname;
+    if (r.includes(path)) return NextResponse.next();
     
     const userCookie = cookies().get("user-data");
     if (userCookie && userCookie.value) {
-        if (request.nextUrl.pathname == "/login") {
+        if (path == "/login") {
             return NextResponse.redirect(new URL("/", request.url))
         }
     } else {
-        if (request.nextUrl.pathname != "/login") {
+        if (path != "/login") {
             return NextResponse.redirect(new URL("/login", request.url))
         }
     }
